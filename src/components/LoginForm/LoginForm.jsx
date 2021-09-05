@@ -19,10 +19,8 @@ const LoginForm = () => {
         body: JSON.stringify(values)
       })
         .then((data) => {
-          console.log('data', data);
           if (data.status === 200) {
             history.push("/order")
-            console.log('data', data);
           }
         })
     } catch (error) {

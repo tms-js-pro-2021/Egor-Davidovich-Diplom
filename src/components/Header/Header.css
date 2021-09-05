@@ -1,0 +1,56 @@
+.header-background {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+    align-items: center;
+    background: rgba(106, 128, 240, 0.93) 0%;
+}
+
+.nav-menu {
+    display: flex;
+}
+
+.header-logo {
+    width: 490px;
+    height: 70px;
+    padding: 30px 0;
+}
+
+.nav-menu__link {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    text-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+    margin-right: 25px;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+
+.btn-logOut {
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    border: 0;
+    margin-left: 50px ;
+}
+
+button:hover {
+    border: 1px solid #ffffff;
+}
+
+a:hover {
+    text-decoration: underline; 
+    color: #ffffff; 
+}
+
+.btn-logOut__text{
+    font-family: Montserrat;
+    font-size: 24px;
+}
+
+

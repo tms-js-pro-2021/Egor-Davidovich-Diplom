@@ -9,21 +9,24 @@ import './App.css'
 
 const App = () => {
   return (
-    <Container>
-      <Router>
-        <Switch>
-          <Route path="/login">
-            <Home />
-          </Route>
-          <Route path="/order">
-            <Order />
-          </Route>
-          <Route>
-            404 not found <Link to="/login"></Link>{' '}
-          </Route>
-        </Switch>
-      </Router>
-    </Container>
+    <>
+      <Container>
+        <Router>
+          <Switch>
+            <Route path="/login">
+              <Home />
+            </Route>
+            <Route path="/order">
+              <Order />
+            </Route>
+            <Route>
+              404 not found <Link to="/login"></Link>{' '}
+            </Route>
+          </Switch>
+        </Router>
+      </Container>
+    </>
+
   );
 }
 
