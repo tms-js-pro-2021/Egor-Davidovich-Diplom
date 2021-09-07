@@ -1,4 +1,4 @@
-.header-background {
+.header__background {
     display: flex;
     justify-content: space-around;
     padding: 0 20px;
@@ -6,17 +6,17 @@
     background: rgba(106, 128, 240, 0.93) 0%;
 }
 
-.nav-menu {
+.nav {
     display: flex;
 }
 
-.header-logo {
+.header__logo {
     width: 490px;
     height: 70px;
     padding: 30px 0;
 }
 
-.nav-menu__link {
+.nav__link {
     font-size: 24px;
     display: flex;
     align-items: center;
@@ -29,7 +29,7 @@
 }
 
 
-.btn-logOut {
+.button__logout {
     display: flex;
     align-items: center;
     background: transparent;

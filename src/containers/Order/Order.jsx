@@ -1,16 +1,13 @@
 import React from 'react';
-import Header from '../../components/Header'
-
-
-
+import MainContent from '../../components/MainContent/MainContent';
+import './Footer.module.css';
 
 const Order = () => {
-    return (
-        <>
-        </>
-    )
-}
+  return (
+    <>
+      <MainContent />
+    </>
+  );
+};
 
-
-
-export default Order
+export default Order;
