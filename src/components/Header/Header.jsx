@@ -8,23 +8,22 @@ const Header = () => {
     <div className={styles.header}>
       <img className={styles.header__logo} src={MyConference} />
       <nav className={styles.nav}>
-        <a className={styles.nav__link} href="URL">
+        <a className={styles.nav__link} href="#">
           HOME
         </a>
-        <a className={styles.nav__link} href="URL">
+        <a className={styles.nav__link} href="#">
           ROOMS
         </a>
-        <a className={styles.nav__link} href="URL">
+        <a className={styles.nav__link} href="#">
           ABOUT
         </a>
-        <a className={styles.nav__link} href="URL">
+        <a className={styles.nav__link} href="#">
           CONTACT US
         </a>
       </nav>
       <button className={styles.button__logout}>
         <ExitToAppTwoToneIcon
           style={{
-            color: '#ffffff',
             fontSize: '3rem',
           }}
         />

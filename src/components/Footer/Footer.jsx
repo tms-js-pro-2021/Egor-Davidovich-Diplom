@@ -9,16 +9,16 @@ const Footer = () => {
   return (
     <div className={styles.footer}>
       <nav className={styles.nav}>
-        <a className={styles.nav__link} href="URL">
+        <a className={styles.nav__link} href="#">
           HOME
         </a>
-        <a className={styles.nav__link} href="URL">
+        <a className={styles.nav__link} href="#">
           ROOMS
         </a>
-        <a className={styles.nav__link} href="URL">
+        <a className={styles.nav__link} href="#">
           ABOUT
         </a>
-        <a className={styles.nav__link} href="URL">
+        <a className={styles.nav__link} href="#">
           CONTACT US
         </a>
       </nav>

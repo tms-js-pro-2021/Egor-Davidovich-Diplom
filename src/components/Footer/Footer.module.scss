@@ -18,7 +18,7 @@
     text-decoration: none;
     cursor: pointer;
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 
     &:hover {
         text-decoration: underline; 
@@ -29,10 +29,12 @@
 
 
 .social__links {
-  margin-right: 20px;
+  margin-right: 30px;
+  color: #ffffff; 
 }
 
 .social__icon {
   height: 50px;
   width: 50px;
+
 }
