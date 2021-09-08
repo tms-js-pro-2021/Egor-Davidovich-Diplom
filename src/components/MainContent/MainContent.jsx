@@ -1,8 +1,8 @@
 import React from 'react';
-import './MainContent.module.css';
+import styles from './MainContent.module.scss';
 
 const MainContent = () => {
-  return <div className="main">MAIN</div>;
+  return <div className={styles.main}>MAIN</div>;
 };
 
 export default MainContent;

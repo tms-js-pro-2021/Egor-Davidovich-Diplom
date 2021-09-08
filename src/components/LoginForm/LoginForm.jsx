@@ -1,6 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
-import './LoginForm.module.css';
+import styles from './LoginForm.module.scss';
 import Logo from '../../image/logImage.svg';
 import { Formik } from 'formik';
 import { useHistory } from 'react-router';
@@ -27,9 +27,9 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="form-container">
-      <h1 className="title">MyConference</h1>
-      <img className="logo" src={Logo} />
+    <div className={styles.form__container}>
+      <h1 className={styles.title}>MyConference</h1>
+      <img className={styles.logo} src={Logo} />
       <Formik
         initialValues={{ email: '', password: '' }}
         validate={(values) => {
@@ -47,25 +47,25 @@ const LoginForm = () => {
         }}
       >
         {({ values, handleChange, errors, handleSubmit }) => (
-          <form className="form" onSubmit={handleSubmit}>
+          <form className={styles.form} onSubmit={handleSubmit}>
             <input
               onChange={handleChange}
-              className="userInput"
+              className={styles.input}
               type="text"
               placeholder="EMAIL"
               name="email"
               value={values.email}
             />
-            <div className="error-message">{errors.email && errors.email}</div>
+            <div className={styles.error__message}>{errors.email && errors.email}</div>
             <input
               onChange={handleChange}
-              className="userInput"
+              className={styles.input}
               type="password"
               placeholder="PASSWORD"
               value={values.password}
               name="password"
             />
-            <button type="submit" className="logInBtn">
+            <button type="submit" className={styles.button__login}>
               LOG IN
             </button>
           </form>

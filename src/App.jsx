@@ -3,9 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import Home from './containers/Home';
 import Order from './containers/Order';
 import Container from './components/Container';
-import './App.css'
-
-
+import './App.css';
 
 const App = () => {
   return (
@@ -26,10 +24,7 @@ const App = () => {
         </Router>
       </Container>
     </>
-
   );
-}
-
-
+};
 
 export default App;
