@@ -5,7 +5,7 @@ import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone';
 
 const Header = () => {
   return (
-    <div className={styles.header__backround}>
+    <div className={styles.header}>
       <img className={styles.header__logo} src={MyConference} />
       <nav className={styles.nav}>
         <a className={styles.nav__link} href="URL">

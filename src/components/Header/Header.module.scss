@@ -1,4 +1,4 @@
-.header__background {
+.header {
     display: flex;
     justify-content: space-around;
     padding: 0 20px;
@@ -26,6 +26,10 @@
     text-decoration: none;
     cursor: pointer;
 
+    &:hover {
+        text-decoration: underline; 
+        color: #ffffff; 
+    }
 }
 
 
@@ -39,16 +43,7 @@
     margin-left: 50px ;
 }
 
-button:hover {
-    border: 1px solid #ffffff;
-}
-
-a:hover {
-    text-decoration: underline; 
-    color: #ffffff; 
-}
-
-.button__logout__text{
+.button__logout__text {
     font-family: Montserrat;
     font-size: 24px;
 }
