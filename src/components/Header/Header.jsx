@@ -1,9 +1,17 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import styles from './Header.module.scss';
 import MyConference from '../../image/myConference.svg';
 import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone';
 
 const Header = () => {
+  let history = useHistory();
+
+  const handleLogOut = () => {
+    console.log('sdasd');
+    history.replace('./login');
+  };
+
   return (
     <div className={styles.header}>
       <img className={styles.header__logo} src={MyConference} />
@@ -21,7 +29,7 @@ const Header = () => {
           CONTACT US
         </a>
       </nav>
-      <button className={styles.button__logout}>
+      <button onClick={handleLogOut} className={styles.button__logout}>
         <ExitToAppTwoToneIcon
           style={{
             fontSize: '3rem',

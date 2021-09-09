@@ -23,18 +23,18 @@ const Footer = () => {
         </a>
       </nav>
       <p> © 2021 Copyright TMS</p>
-      <div class={styles.footer__social}>
-        <a href="#" class={styles.social__links}>
-          <FacebookIcon class={styles.social__icon} />
+      <div>
+        <a href="#" className={styles.social__links}>
+          <FacebookIcon fontSize="large" />
         </a>
-        <a href="#" class={styles.social__links}>
-          <InstagramIcon class={styles.social__icon} />
+        <a href="#" className={styles.social__links}>
+          <InstagramIcon fontSize="large" />
         </a>
-        <a href="#" class={styles.social__links}>
-          <LinkedInIcon class={styles.social__icon} />
+        <a href="#" className={styles.social__links}>
+          <LinkedInIcon fontSize="large" />
         </a>
-        <a href="#" class={styles.social__links}>
-          <TwitterIcon class={styles.social__icon} />
+        <a href="#" className={styles.social__links}>
+          <TwitterIcon fontSize="large" />
         </a>
       </div>
     </div>
