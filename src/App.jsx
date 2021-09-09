@@ -1,29 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import Home from './containers/Home';
+import LoginForm from './components/LoginForm';
 import Order from './containers/Order';
 import Container from './components/Container';
 import './App.css';
 
+
 const App = () => {
+
   return (
-    <>
+    <Router>
       <Container>
-        <Router>
-          <Switch>
-            <Route path="/login">
-              <Home />
-            </Route>
-            <Route path="/order">
-              <Order />
-            </Route>
-            <Route>
-              404 not found <Link to="/login"></Link>{' '}
-            </Route>
-          </Switch>
-        </Router>
+        <Switch>
+          <Route path="/login">
+            <LoginForm />
+          </Route>
+          <Route path="/order">
+            <Order />
+          </Route>
+        </Switch>
       </Container>
-    </>
+    </Router>
+
   );
 };
 

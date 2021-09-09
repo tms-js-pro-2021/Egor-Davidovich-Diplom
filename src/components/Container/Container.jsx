@@ -2,13 +2,16 @@ import React from 'react';
 import Header from '../Header';
 import Footer from '../Footer';
 import styles from './Container.module.scss';
+import { useLocation } from 'react-router';
+
 
 const Container = ({ children }) => {
+  const location  = useLocation();
   return (
     <>
-      <Header />
+      {location.pathname !== '/login' && <Header />}
       <div className={styles.wrapper}>{children}</div>
-      <Footer />
+      {location.pathname !== '/login' && <Footer />}
     </>
   );
 };

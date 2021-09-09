@@ -5,18 +5,32 @@ import AddToPhotosOutlinedIcon from '@material-ui/icons/AddToPhotosOutlined';
 import classnames from 'classnames';
 
 const MainContent = () => {
-  // const [rooms, setRooms] = useState([
-  //   {id: Date.now(), title: 'Conference Room #1', guests: '17'},
-  //   {id: Date.now(), title: 'Conference Room #2', guests: '12'}
-  // ])
+  const [rooms, setRooms] = useState([
+    {id: Date.now(), title: 'Conference Room #1', guests: '17'},
+    {id: Date.now(), title: 'Conference Room #2', guests: '12'}
+  ])
 
-  // useEffect(() => {
+  useEffect(() => {
+    try {
+      fetch('https://tms-js-pro-back-end.herokuapp.com/api/users/signup', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((data) => {
+        if (data.status === 200) {
+          console.log(data);;
+        }
+      });
+    } catch (error) {
+      console.log('SERVER ERROR');
+    }
+  },[]);
 
-  // })
 
   return (
     <div className={styles.main}>
-      <button className={styles.button__add}>
+      {/* <button className={styles.button__add}>
         <AddToPhotosOutlinedIcon
           style={{
             fontSize: '4rem',
@@ -67,7 +81,7 @@ const MainContent = () => {
             </button>
           </div>
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
 };
