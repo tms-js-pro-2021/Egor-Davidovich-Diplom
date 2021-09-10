@@ -6,7 +6,7 @@ import { Formik } from 'formik';
 import { useHistory } from 'react-router';
 
 const LoginForm = () => {
-  let history = useHistory();
+  const history = useHistory();
 
   const handleLoginClick = (values) => {
     try {

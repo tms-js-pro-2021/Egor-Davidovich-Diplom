@@ -6,17 +6,16 @@ import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  let history = useHistory();
+  const history = useHistory();
 
   const handleLogOut = () => {
-    console.log('sdasd');
     history.replace('/login');
   };
 
   return (
     <div className={styles.header}>
       <Link to="/">
-      <img className={styles.header__logo} src={MyConference} />
+        <img className={styles.header__logo} src={MyConference} />
       </Link>
       <nav className={styles.nav}>
         <a className={styles.nav__link} href="">

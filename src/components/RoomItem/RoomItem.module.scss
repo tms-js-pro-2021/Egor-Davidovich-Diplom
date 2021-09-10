@@ -1,0 +1,77 @@
+.room {
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+
+.info__block {
+  display: flex;
+  align-items: center;
+}
+
+.room__title {
+font-weight: bold;
+font-size: 36px;
+color: #FAF3F3;
+text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+}
+
+.room__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.room__description {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  font-size: 24px;
+  color: #0e0e0e;
+  text-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+  margin-left: 20px;
+}
+
+.room__buttons {
+  font-family: Montserrat;
+  font-weight: bold;
+  font-size: 16px;
+  color: #F0E7E7;
+  border-color: transparent;
+  width: 150px;
+  height: 70px;
+  border-radius: 50px;
+  text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  &:hover {
+    transition: 1s ease-in-out;
+    background: #4400ff;
+  }
+
+}
+
+.room__buttons__more {
+  background: rgba(106, 128, 240, 0.93) 0%;
+  margin-right: 10px;
+
+}
+
+.room__buttons__delete {
+  background: #ad3f3f;
+  &:hover {
+    transition: 1s ease-in-out;
+    background: #740000;
+  }
+}
+
+.room__image {
+  width: 350px;
+  height: 250px;
+}
