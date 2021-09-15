@@ -21,7 +21,7 @@ const RoomList = () => {
     }
   }, []);
 
-  return <div className>{rooms.length !== 0 && rooms.map((item) => <RoomItem {...item} />)}</div>;
+  return <div>{rooms.length !== 0 && rooms.map((item) => <RoomItem {...item} />)}</div>;
 };
 
 export default RoomList;

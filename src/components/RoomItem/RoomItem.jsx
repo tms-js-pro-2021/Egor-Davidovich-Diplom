@@ -4,6 +4,8 @@ import classnames from 'classnames';
 import roomImage from '../../image/room.svg';
 
 const RoomItem = ({ ...item }) => {
+  const [isShowPopupDel, setIsShowPopupDel] = useState(false);
+
   return (
     <div className={styles.room}>
       <div className={styles.info__block}>
@@ -19,9 +21,12 @@ const RoomItem = ({ ...item }) => {
       </div>
       <div>
         <button className={classnames(styles.room__buttons__more, styles.room__buttons)}>
-          Watch more
+          Book
         </button>
-        <button className={classnames(styles.room__buttons__delete, styles.room__buttons)}>
+        <button
+          onClick={() => setIsShowPopupDel(true)}
+          className={classnames(styles.room__buttons__delete, styles.room__buttons)}
+        >
           Delete room
         </button>
       </div>
