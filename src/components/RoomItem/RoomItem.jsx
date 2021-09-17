@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './RoomItem.module.scss';
 import classnames from 'classnames';
 import roomImage from '../../image/room.svg';
+import PopUpDel from '../PopUpDel';
 
 const RoomItem = ({ ...item }) => {
   const [isShowPopupDel, setIsShowPopupDel] = useState(false);
@@ -30,6 +31,7 @@ const RoomItem = ({ ...item }) => {
           Delete room
         </button>
       </div>
+      {isShowPopupDel && <PopUpDel />}
     </div>
   );
 };
