@@ -16,6 +16,7 @@ const RoomItem = ({ ...item }) => {
         </div>
         <div className={styles.room__description}>
           <span>Guests: 12</span>
+          <span>Floor: 14</span>
           <span>Extra features:</span>
           <span>Projector, Web Camera, Catering</span>
         </div>
