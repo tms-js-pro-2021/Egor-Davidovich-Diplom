@@ -32,7 +32,7 @@ const RoomItem = ({ ...item }) => {
           Delete room
         </button>
       </div>
-      {isShowPopupDel && <PopUpDel />}
+      <PopUpDel open={isShowPopupDel} handleClose={() => setIsShowPopupDel(false)} />
     </div>
   );
 };
