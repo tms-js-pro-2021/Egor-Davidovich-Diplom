@@ -4,8 +4,9 @@ import classnames from 'classnames';
 import roomImage from '../../image/room.svg';
 import PopUpDel from '../PopUpDel';
 
-const RoomItem = ({ ...item }) => {
+const RoomItem = ({ ...item }, { rooms, handleDelete }) => {
   const [isShowPopupDel, setIsShowPopupDel] = useState(false);
+  console.log(item);
 
   return (
     <div className={styles.room}>
@@ -17,8 +18,8 @@ const RoomItem = ({ ...item }) => {
         <div className={styles.room__description}>
           <span>Guests: 12</span>
           <span>Floor: 14</span>
-          <span>Extra features:</span>
-          <span>Projector, Web Camera, Catering</span>
+          <span>Address:</span>
+          <span>g.Minsk, Slobodskaya 121, room 32</span>
         </div>
       </div>
       <div>
@@ -32,7 +33,13 @@ const RoomItem = ({ ...item }) => {
           Delete room
         </button>
       </div>
-      <PopUpDel open={isShowPopupDel} handleClose={() => setIsShowPopupDel(false)} />
+      <PopUpDel
+        open={isShowPopupDel}
+        handleClose={() => setIsShowPopupDel(false)}
+        rooms={rooms}
+        handleDelete={handleDelete}
+        id={item.id}
+      />
     </div>
   );
 };

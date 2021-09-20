@@ -10,6 +10,7 @@ const MainContent = () => {
   // const [roomStuff, setRoomStuff] = useState({
   //   title: '',
   //   guests: 0,
+  //   address: '',
   //   floor: 0;
   //   booked: Date.now(),
   //   stuff: {
@@ -42,6 +43,7 @@ const MainContent = () => {
             </Button>
             <div>
               <TextField id="outlined-basic" label="ENTER NAME" variant="outlined" required />
+              <TextField id="outlined-basic" label="ENTER" variant="outlined" required />
               <TextField
                 id="outlined-basic"
                 type="number"
@@ -57,7 +59,7 @@ const MainContent = () => {
                 required
               />
             </div>
-            <FormGroup>
+            {/* <FormGroup>
               <FormControlLabel control={<Checkbox />} label="Projector" />
               <FormControlLabel control={<Checkbox />} label="Web Camera" />
               <FormControlLabel control={<Checkbox />} label="Board" />
@@ -65,7 +67,7 @@ const MainContent = () => {
               <FormControlLabel control={<Checkbox />} label="Coffee" />
               <FormControlLabel control={<Checkbox />} label="Tea" />
               <FormControlLabel control={<Checkbox />} label="Water" />
-            </FormGroup>
+            </FormGroup> */}
             <button>CONFIRM</button>
           </div>
         </div>
