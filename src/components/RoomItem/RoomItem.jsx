@@ -4,9 +4,8 @@ import classnames from 'classnames';
 import roomImage from '../../image/room.svg';
 import PopUpDel from '../PopUpDel';
 
-const RoomItem = ({ ...item }, { rooms, handleDelete }) => {
+const RoomItem = ({ item, rooms, setRooms }) => {
   const [isShowPopupDel, setIsShowPopupDel] = useState(false);
-  console.log(item);
 
   return (
     <div className={styles.room}>
@@ -37,7 +36,7 @@ const RoomItem = ({ ...item }, { rooms, handleDelete }) => {
         open={isShowPopupDel}
         handleClose={() => setIsShowPopupDel(false)}
         rooms={rooms}
-        handleDelete={handleDelete}
+        setRooms={setRooms}
         id={item.id}
       />
     </div>

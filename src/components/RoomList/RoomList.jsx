@@ -24,7 +24,7 @@ const RoomList = () => {
   return (
     <div>
       {rooms.length !== 0 &&
-        rooms.map((item) => <RoomItem {...item} rooms={rooms} handleDelete={setRooms} />)}
+        rooms.map((item) => <RoomItem item={item} rooms={rooms} setRooms={setRooms} />)}
     </div>
   );
 };

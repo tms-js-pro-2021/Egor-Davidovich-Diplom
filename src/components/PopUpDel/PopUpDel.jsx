@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const PopUpDel = ({ open, handleClose, rooms, handleDelete, id }) => {
+const PopUpDel = ({ open, handleClose, rooms, setRooms, id }) => {
   const handleDeleteRoom = () => {
+    console.log(id);
     try {
       fetch(`https://tms-js-pro-back-end.herokuapp.com/api/todos/${id}`, {
         method: 'DELETE',
@@ -16,8 +17,9 @@ const PopUpDel = ({ open, handleClose, rooms, handleDelete, id }) => {
         },
       }).then(() => {
         const clonedRooms = [...rooms];
-        clonedRooms.filter((index) => index);
-        handleDelete(clonedRooms);
+        clonedRooms.filter((item) => item.id !== id);
+        console.log(clonedRooms);
+        setRooms(clonedRooms);
         handleClose();
       });
     } catch (error) {
