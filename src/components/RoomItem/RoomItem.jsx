@@ -4,9 +4,8 @@ import classnames from 'classnames';
 import roomImage from '../../image/room.svg';
 import PopUpDel from '../PopUpDel';
 
-const RoomItem = ({ item, rooms, setRooms }) => {
+const RoomItem = ({ handleDeleteRoom, ...item }) => {
   const [isShowPopupDel, setIsShowPopupDel] = useState(false);
-
   return (
     <div className={styles.room}>
       <div className={styles.info__block}>
@@ -35,8 +34,7 @@ const RoomItem = ({ item, rooms, setRooms }) => {
       <PopUpDel
         open={isShowPopupDel}
         handleClose={() => setIsShowPopupDel(false)}
-        rooms={rooms}
-        setRooms={setRooms}
+        handleDeleteRoom={handleDeleteRoom}
         id={item.id}
       />
     </div>

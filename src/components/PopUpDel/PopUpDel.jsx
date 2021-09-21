@@ -4,29 +4,11 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const PopUpDel = ({ open, handleClose, rooms, setRooms, id }) => {
-  const handleDeleteRoom = () => {
-    console.log(id);
-    try {
-      fetch(`https://tms-js-pro-back-end.herokuapp.com/api/todos/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization:
-            'Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtlbWFsa2FsYW5kYXJvdkBnbWFpbC5jb20iLCJpZCI6IjYxMDJiOWMxMmFhYTkwMGMwZTI2OGFkZSIsImV4cCI6MTYzNjM5NTk5NSwiaWF0IjoxNjMxMjExOTk1fQ.C-rdvGj-bj16smVKORldxkTYw75ZHu1aBXtlQ5ivk-o',
-        },
-      }).then(() => {
-        const clonedRooms = [...rooms];
-        clonedRooms.filter((item) => item.id !== id);
-        console.log(clonedRooms);
-        setRooms(clonedRooms);
-        handleClose();
-      });
-    } catch (error) {
-      console.log('SERVER ERROR');
-    }
+const PopUpDel = ({ open, handleClose, handleDeleteRoom, id }) => {
+  const deleteRoomFromList = () => {
+    handleDeleteRoom(id);
+    handleClose();
   };
-
   return (
     <Dialog
       open={open}
@@ -39,7 +21,7 @@ const PopUpDel = ({ open, handleClose, rooms, setRooms, id }) => {
         <Button onClick={handleClose} color="primary">
           CANCEL
         </Button>
-        <Button onClick={handleDeleteRoom} color="primary" autoFocus>
+        <Button onClick={deleteRoomFromList} color="primary" autoFocus>
           OK
         </Button>
       </DialogActions>
