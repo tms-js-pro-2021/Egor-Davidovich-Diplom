@@ -16,7 +16,7 @@ const PopUpDel = ({ open, handleClose, handleDeleteRoom, id }) => {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">{'Are you sure delete this room?'}</DialogTitle>
+      <DialogTitle id="alert-dialog-title">Are you sure delete this room?</DialogTitle>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
           CANCEL

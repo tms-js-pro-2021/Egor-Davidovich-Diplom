@@ -1,10 +1,10 @@
 import React from 'react';
-import LoginForm from '../../components/LoginForm';
+import MainContent from '../../components/MainContent/MainContent';
 
 const Home = () => {
   return (
     <>
-      <LoginForm />
+      <MainContent />
     </>
   );
 };

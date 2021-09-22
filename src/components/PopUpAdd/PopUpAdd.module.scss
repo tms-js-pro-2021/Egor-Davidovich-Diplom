@@ -1,0 +1,26 @@
+.popup {
+  display: flex;
+  justify-content: center;
+
+
+ &__title   {
+    h2 {
+      font-size: 36px;
+    }
+
+ }
+
+ &__content {
+  display: flex;
+  flex-direction: column;
+ }
+
+
+  // &__wrapper{
+  //   position: relative;
+  //   background: rgb(255, 255, 255);
+  //   width: 800px;
+  //   height: 800px;
+  // }
+}
+

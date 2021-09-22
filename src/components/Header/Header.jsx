@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <div className={styles.header}>
-      <Link to="/order">
+      <Link to="/home">
         <img className={styles.header__logo} src={MyConference} />
       </Link>
       <nav className={styles.nav}>

@@ -1,13 +1,11 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LoginForm from './components/LoginForm';
-import Order from './containers/Order';
+import Home from './containers/Home';
 import Container from './components/Container';
 import './App.css';
 
-
 const App = () => {
-
   return (
     <Router>
       <Container>
@@ -15,13 +13,12 @@ const App = () => {
           <Route path="/login">
             <LoginForm />
           </Route>
-          <Route path="/order">
-            <Order />
+          <Route path="/home">
+            <Home />
           </Route>
         </Switch>
       </Container>
     </Router>
-
   );
 };
 

@@ -1,49 +1,66 @@
-// import React from 'react';
-// import Button from '@material-ui/core/Button';
-// import Dialog from '@material-ui/core/Dialog';
-// import DialogActions from '@material-ui/core/DialogActions';
-// import DialogTitle from '@material-ui/core/DialogTitle';
+import React from 'react';
+import CloseIcon from '@material-ui/icons/Close';
+import styles from './PopUpAdd.module.scss';
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from '@material-ui/core';
 
-// const PopUpAdd = ({ open, handleClose, rooms, handleDelete, id }) => {
-//   const handleDeleteRoom = () => {
-//     try {
-//       fetch(`https://tms-js-pro-back-end.herokuapp.com/api/todos/${id}`, {
-//         method: 'DELETE',
-//         headers: {
-//           'Content-Type': 'application/json',
-//           Authorization:
-//             'Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtlbWFsa2FsYW5kYXJvdkBnbWFpbC5jb20iLCJpZCI6IjYxMDJiOWMxMmFhYTkwMGMwZTI2OGFkZSIsImV4cCI6MTYzNjM5NTk5NSwiaWF0IjoxNjMxMjExOTk1fQ.C-rdvGj-bj16smVKORldxkTYw75ZHu1aBXtlQ5ivk-o',
-//         },
-//       }).then(() => {
-//         const clonedRooms = [...rooms];
-//         clonedRooms.filter((item) => item.id !== id);
-//         handleDelete(clonedRooms);
-//         console.log(clonedRooms);
-//         handleClose();
-//       });
-//     } catch (error) {
-//       console.log('SERVER ERROR');
-//     }
-//   };
+const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
+  const addRoomFromList = () => {
+    handleAddRoom();
+    handleClose();
+  };
 
-//   return (
-//     <Dialog
-//       open={open}
-//       onClose={handleClose}
-//       aria-labelledby="alert-dialog-title"
-//       aria-describedby="alert-dialog-description"
-//     >
-//       <DialogTitle id="alert-dialog-title">{'Are you sure delete this room?'}</DialogTitle>
-//       <DialogActions>
-//         <Button onClick={handleClose} color="primary">
-//           CANCEL
-//         </Button>
-//         <Button onClick={handleDeleteRoom} color="primary" autoFocus>
-//           OK
-//         </Button>
-//       </DialogActions>
-//     </Dialog>
-//   );
-// };
+  return (
+    <Dialog
+      className={styles.popup}
+      open={open}
+      onClose={handleClose}
+      aria-labelledby="alert-dialog-title"
+    >
+      <Button onClick={handleClose} variant="contained">
+        <CloseIcon />
+      </Button>
+      <div className={styles.popup__title}>
+        <DialogTitle id="alert-dialog-title">ADD NEW ROOM</DialogTitle>
+      </div>
+      <DialogContent className={styles.popup__content}>
+        <TextField label="ENTER NAME" variant="outlined" required />
+        <TextField label="ENTER ADDRESS" variant="outlined" required />
+        <TextField type="number" label="FLOOR" variant="outlined" required />
+        <TextField
+          id="outlined-basic"
+          type="number"
+          label="MAX GUESTS"
+          variant="outlined"
+          required
+        />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose} color="primary">
+          CANCEL
+        </Button>
+        <Button onClick={addRoomFromList} color="primary" autoFocus>
+          ADD ROOM
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
 
-// export default PopUpAdd;
+export default PopUpAdd;
+
+//       {/* <FormGroup>
+//         <FormControlLabel control={<Checkbox />} label="Projector" />
+//         <FormControlLabel control={<Checkbox />} label="Web Camera" />
+//         <FormControlLabel control={<Checkbox />} label="Board" />
+//         <FormControlLabel control={<Checkbox />} label="Catering" />
+//         <FormControlLabel control={<Checkbox />} label="Coffee" />
+//         <FormControlLabel control={<Checkbox />} label="Tea" />
+//         <FormControlLabel control={<Checkbox />} label="Water" />
+//       </FormGroup> */}

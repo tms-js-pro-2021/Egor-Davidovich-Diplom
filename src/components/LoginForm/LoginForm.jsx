@@ -18,7 +18,7 @@ const LoginForm = () => {
         body: JSON.stringify(values),
       }).then((data) => {
         if (data.status === 200) {
-          history.push('/order');
+          history.push('/home');
         }
       });
     } catch (error) {
