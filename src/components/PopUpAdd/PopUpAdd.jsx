@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import styles from './PopUpAdd.module.scss';
 import {
@@ -10,22 +10,56 @@ import {
   TextField,
 } from '@material-ui/core';
 
-const PopUpAdd = ({
-  open,
-  handleClose,
-  handleAddRoom,
-  setTitle,
-  setGuests,
-  setAddress,
-  setFloor,
-  title,
-  guests,
-  address,
-  floor,
-}) => {
+const textFieldSettings = [
+  {
+    type: 'text',
+    label: 'ENTER NAME',
+    variant: 'outlined',
+    name: 'description',
+    required: true,
+  },
+  {
+    type: 'text',
+    label: 'ENTER ADDRESS',
+    variant: 'outlined',
+    name: 'address',
+    required: true,
+  },
+  {
+    type: 'number',
+    label: 'FLOOR',
+    variant: 'outlined',
+    name: 'floor',
+    required: true,
+  },
+  {
+    type: 'number',
+    label: 'MAX GUESTS',
+    variant: 'outlined',
+    name: 'guests',
+    required: true,
+  },
+];
+
+const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
+  const [inputValues, setInputValues] = useState({
+    description: '',
+    address: '',
+    floor: '',
+    guests: '',
+  });
+
   const addRoomFromList = () => {
-    handleAddRoom();
+    handleAddRoom({ ...inputValues });
     handleClose();
+    setInputValues('');
+  };
+
+  const setInputValue = (event) => {
+    setInputValues({
+      ...inputValues,
+      [event.target.name]: event.target.value,
+    });
   };
 
   return (
@@ -38,41 +72,22 @@ const PopUpAdd = ({
       <Button onClick={handleClose} variant="contained">
         <CloseIcon />
       </Button>
-      <div className={styles.popup__title}>
-        <DialogTitle id="alert-dialog-title">ADD NEW ROOM</DialogTitle>
-      </div>
+      <DialogTitle className={styles.popup__title} id="alert-dialog-title">
+        ADD NEW ROOM
+      </DialogTitle>
       <DialogContent className={styles.popup__content}>
-        <TextField
-          label="ENTER NAME"
-          variant="outlined"
-          required
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <TextField
-          label="ENTER ADDRESS"
-          variant="outlined"
-          required
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-        />
-        <TextField
-          type="number"
-          label="FLOOR"
-          variant="outlined"
-          required
-          value={floor}
-          onChange={(e) => setFloor(e.target.value)}
-        />
-        <TextField
-          id="outlined-basic"
-          type="number"
-          label="MAX GUESTS"
-          variant="outlined"
-          required
-          value={guests}
-          onChange={(e) => setGuests(e.target.value)}
-        />
+        {textFieldSettings.map((input) => (
+          <TextField
+            type={input.type}
+            key={input.label}
+            label={input.label}
+            name={input.name}
+            variant={input.variant}
+            required={input.required}
+            value={inputValues[input.name]}
+            onChange={setInputValue}
+          />
+        ))}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
@@ -87,13 +102,3 @@ const PopUpAdd = ({
 };
 
 export default PopUpAdd;
-
-//       {/* <FormGroup>
-//         <FormControlLabel control={<Checkbox />} label="Projector" />
-//         <FormControlLabel control={<Checkbox />} label="Web Camera" />
-//         <FormControlLabel control={<Checkbox />} label="Board" />
-//         <FormControlLabel control={<Checkbox />} label="Catering" />
-//         <FormControlLabel control={<Checkbox />} label="Coffee" />
-//         <FormControlLabel control={<Checkbox />} label="Tea" />
-//         <FormControlLabel control={<Checkbox />} label="Water" />
-//       </FormGroup> */}
