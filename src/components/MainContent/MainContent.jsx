@@ -7,6 +7,10 @@ import PopUpAdd from '../PopUpAdd/PopUpAdd';
 const MainContent = () => {
   const [isShowPopupAdd, setIsShowPopupAdd] = useState(false);
   const [rooms, setRooms] = useState([]);
+  const [title, setTitle] = useState('');
+  const [guests, setGuests] = useState(0);
+  const [address, setAddress] = useState('');
+  const [floor, setFloor] = useState(0);
 
   useEffect(() => {
     try {
@@ -48,10 +52,10 @@ const MainContent = () => {
       fetch(`https://tms-js-pro-back-end.herokuapp.com/api/todos`, {
         method: 'POST',
         body: {
-          title: '',
-          guests: '0',
-          address: '',
-          floor: '0',
+          title: { title },
+          guests: { guests },
+          address: { address },
+          floor: { floor },
           booked: null,
           stuff: {
             coffee: false,
@@ -95,6 +99,14 @@ const MainContent = () => {
         open={isShowPopupAdd}
         handleClose={() => setIsShowPopupAdd(false)}
         handleAddRoom={handleAddRoom}
+        setTitle={setTitle}
+        setGuests={setGuests}
+        setAddress={setAddress}
+        setFloor={setFloor}
+        title={title}
+        guests={guests}
+        address={address}
+        floor={floor}
       />
     </div>
   );

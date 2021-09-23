@@ -10,7 +10,19 @@ import {
   TextField,
 } from '@material-ui/core';
 
-const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
+const PopUpAdd = ({
+  open,
+  handleClose,
+  handleAddRoom,
+  setTitle,
+  setGuests,
+  setAddress,
+  setFloor,
+  title,
+  guests,
+  address,
+  floor,
+}) => {
   const addRoomFromList = () => {
     handleAddRoom();
     handleClose();
@@ -30,15 +42,36 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
         <DialogTitle id="alert-dialog-title">ADD NEW ROOM</DialogTitle>
       </div>
       <DialogContent className={styles.popup__content}>
-        <TextField label="ENTER NAME" variant="outlined" required />
-        <TextField label="ENTER ADDRESS" variant="outlined" required />
-        <TextField type="number" label="FLOOR" variant="outlined" required />
+        <TextField
+          label="ENTER NAME"
+          variant="outlined"
+          required
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+        <TextField
+          label="ENTER ADDRESS"
+          variant="outlined"
+          required
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+        <TextField
+          type="number"
+          label="FLOOR"
+          variant="outlined"
+          required
+          value={floor}
+          onChange={(e) => setFloor(e.target.value)}
+        />
         <TextField
           id="outlined-basic"
           type="number"
           label="MAX GUESTS"
           variant="outlined"
           required
+          value={guests}
+          onChange={(e) => setGuests(e.target.value)}
         />
       </DialogContent>
       <DialogActions>
