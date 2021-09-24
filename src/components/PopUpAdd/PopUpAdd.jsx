@@ -52,7 +52,12 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
   const addRoomFromList = () => {
     handleAddRoom({ ...inputValues });
     handleClose();
-    setInputValues('');
+    setInputValues({
+      description: '',
+      address: '',
+      floor: '',
+      guests: '',
+    });
   };
 
   const setInputValue = (event) => {
@@ -86,6 +91,7 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
             required={input.required}
             value={inputValues[input.name]}
             onChange={setInputValue}
+            inputProps={{ min: 0, maxLength: 50 }}
           />
         ))}
       </DialogContent>

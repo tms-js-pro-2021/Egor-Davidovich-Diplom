@@ -2,15 +2,14 @@ import React from 'react';
 import RoomItem from '../RoomItem';
 
 const RoomList = ({ rooms, handleDeleteRoom }) => {
-  const sortedRooms = rooms.sort((a, b) => (a.UpdatedAt < b.UpdatedAt ? 1 : -1));
-
+  const sortedRooms = rooms.sort((a, b) => (a.updatedAt < b.updatedAt ? 1 : -1));
   return (
-    <div>
-      {rooms.length &&
+    <>
+      {rooms.length !== 0 &&
         sortedRooms.map((item) => (
           <RoomItem key={item.id} handleDeleteRoom={handleDeleteRoom} {...item} />
         ))}
-    </div>
+    </>
   );
 };
 
