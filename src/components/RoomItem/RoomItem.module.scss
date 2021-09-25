@@ -1,8 +1,7 @@
 .room {
   border-bottom: 1px solid black;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
   padding: 20px 0;
 
   &:last-child {
@@ -13,32 +12,27 @@
 
 .info__block {
   display: flex;
+  justify-content: space-around;
   align-items: center;
 }
 
 .room__title {
+margin-left: 80px;
 font-weight: bold;
 font-size: 36px;
 color: #FAF3F3;
 text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
 }
 
-.room__info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 500px;
-}
 
 .room__description {
   display: flex;
   flex-direction: column;
+  width: 500px;
   font-weight: bold;
   font-size: 24px;
   color: #0e0e0e;
   text-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
-  margin-left: 20px;
-  width: 500px;
 }
 
 .room__buttons {

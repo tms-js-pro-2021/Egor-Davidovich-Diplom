@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
-import styles from './PopUpAdd.module.scss';
+import styles from './PopUpBook.module.scss';
 import {
   Button,
+  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControlLabel,
+  FormGroup,
   TextField,
 } from '@material-ui/core';
 
@@ -41,7 +44,7 @@ const textFieldSettings = [
   },
 ];
 
-const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
+const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
   const [inputValues, setInputValues] = useState({
     description: '',
     address: '',
@@ -78,34 +81,36 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
         <CloseIcon />
       </Button>
       <DialogTitle className={styles.popup__title} id="alert-dialog-title">
-        ADD NEW ROOM
+        BOOKING
       </DialogTitle>
       <DialogContent className={styles.popup__content}>
-        {textFieldSettings.map((input) => (
-          <TextField
-            className={styles.popup__input}
-            type={input.type}
-            key={input.label}
-            label={input.label}
-            name={input.name}
-            variant={input.variant}
-            required={input.required}
-            value={inputValues[input.name]}
-            onChange={setInputValue}
-            inputProps={{ min: 0, maxLength: 50 }}
-          />
-        ))}
+        <div>
+          <span className={styles.room__title}>{item.description}</span>
+          <span>g.Minsk, Slobodskaya 121, room 32</span>
+          <span>9th Floor</span>
+        </div>
+        <div>
+          <FormGroup>
+            <FormControlLabel control={<Checkbox  />} label="Projector" />
+            <FormControlLabel control={<Checkbox  />} label="WebCamera" />
+            <FormControlLabel control={<Checkbox  />} label="Board" />
+            <FormControlLabel control={<Checkbox  />} label="Catering" />
+            <FormControlLabel control={<Checkbox  />} label="Coffee" />
+            <FormControlLabel control={<Checkbox  />} label="Tea" />
+            <FormControlLabel control={<Checkbox  />} label="Water" />
+          </FormGroup>
+        </div>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} className={styles.popup__btn} color="primary">
           CANCEL
         </Button>
         <Button onClick={addRoomFromList} className={styles.popup__btn} color="primary" autoFocus>
-          ADD ROOM
+          CONFIRM
         </Button>
       </DialogActions>
     </Dialog>
   );
 };
 
-export default PopUpAdd;
+export default PopUpBook;
