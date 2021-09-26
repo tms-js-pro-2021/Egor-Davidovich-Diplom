@@ -16,9 +16,9 @@ const RoomItem = ({ handleDeleteRoom, ...item }) => {
         <div>
           <div className={styles.room__description}>
             <span>Guests: 12</span>
-            <span>Floor: 14</span>
             <span>Address:</span>
             <span>g.Minsk, Slobodskaya 121, room 32</span>
+            <span>Floor: 14</span>
           </div>
         </div>
         <div>

@@ -97,10 +97,10 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
         ))}
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} className={styles.popup__btn} color="primary">
+        <Button onClick={handleClose} variant="contained" className={styles.popup__btn} color="secondary">
           CANCEL
         </Button>
-        <Button onClick={addRoomFromList} className={styles.popup__btn} color="primary" autoFocus>
+        <Button onClick={addRoomFromList} variant="contained" className={styles.popup__btn} color="primary" autoFocus>
           ADD ROOM
         </Button>
       </DialogActions>

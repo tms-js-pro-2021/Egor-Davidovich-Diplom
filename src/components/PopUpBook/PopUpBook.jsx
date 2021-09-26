@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import CloseIcon from '@material-ui/icons/Close';
 import styles from './PopUpBook.module.scss';
+import Projector from '../../image/projector.svg';
+import WebCam from '../../image/webcam.svg';
+import Catering from '../../image/catering.svg';
+import Tea from '../../image/tea.svg';
+import Water from '../../image/water.svg';
+import Coffee from '../../image/coffee.svg';
+import Board from '../../image/board.png';
+
 import {
   Button,
   Checkbox,
@@ -10,7 +18,6 @@ import {
   DialogTitle,
   FormControlLabel,
   FormGroup,
-  TextField,
 } from '@material-ui/core';
 
 const textFieldSettings = [
@@ -84,32 +91,90 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
         BOOKING
       </DialogTitle>
       <DialogContent className={styles.popup__content}>
-        <div>
-          <span className={styles.room__title}>{item.description}</span>
-          <span>g.Minsk, Slobodskaya 121, room 32</span>
-          <span>9th Floor</span>
+        <div className={styles.room__info}>
+          <span className={styles.room__info__title}>{item.description}</span>
+          <span className={styles.room__info__other}>g.Minsk, Slobodskaya 121, room 32</span>
+          <span className={styles.room__info__other}>9th Floor</span>
         </div>
-        <div>
-          <FormGroup>
-            <FormControlLabel control={<Checkbox  />} label="Projector" />
-            <FormControlLabel control={<Checkbox  />} label="WebCamera" />
-            <FormControlLabel control={<Checkbox  />} label="Board" />
-            <FormControlLabel control={<Checkbox  />} label="Catering" />
-            <FormControlLabel control={<Checkbox  />} label="Coffee" />
-            <FormControlLabel control={<Checkbox  />} label="Tea" />
-            <FormControlLabel control={<Checkbox  />} label="Water" />
+        <div className={styles.popup__containerCheckboxes}>
+          <FormGroup className={styles.popup__checkbox}>
+            <FormControlLabel
+              control={<Checkbox color="primary" />}
+              label={
+                <React.Fragment>
+                  <img className={styles.popup__img} src={Projector} />
+                  Projector
+                </React.Fragment>
+              }
+            />
+            <FormControlLabel
+              control={<Checkbox color="primary" />}
+              label={
+                <React.Fragment>
+                  <img className={styles.popup__img} src={WebCam} />
+                  WebCamera
+                </React.Fragment>
+              }
+            />
+            <FormControlLabel
+              control={<Checkbox color="primary" />}
+              label={
+                <React.Fragment>
+                  <img className={styles.popup__img} src={Board} />
+                  Board
+                </React.Fragment>
+              }
+            />
+          </FormGroup>
+          <FormGroup className={styles.popup__checkbox}>
+            <FormControlLabel
+              control={<Checkbox color="primary" />}
+              label={
+                <React.Fragment>
+                  <img className={styles.popup__img} src={Catering} />
+                  Catering
+                </React.Fragment>
+              }
+            />
+            <FormControlLabel
+              control={<Checkbox color="primary" />}
+              label={
+                <React.Fragment>
+                  <img className={styles.popup__img} src={Coffee} />
+                  Coffee
+                </React.Fragment>
+              }
+            />
+            <FormControlLabel
+              control={<Checkbox color="primary" />}
+              label={
+                <React.Fragment>
+                  <img className={styles.popup__img} src={Tea} />
+                  Tea
+                </React.Fragment>
+              }
+            />
+            <FormControlLabel
+              control={<Checkbox color="primary" />}
+              label={
+                <React.Fragment>
+                  <img className={styles.popup__img} src={Water} />
+                  Water
+                </React.Fragment>
+              }
+            />
           </FormGroup>
         </div>
-      </DialogContent>
+      </DialogContent >
       <DialogActions>
-        <Button onClick={handleClose} className={styles.popup__btn} color="primary">
+        <Button onClick={handleClose} className={styles.popup__btn} color="secondary" variant="contained">
           CANCEL
         </Button>
-        <Button onClick={addRoomFromList} className={styles.popup__btn} color="primary" autoFocus>
+        <Button onClick={addRoomFromList} className={styles.popup__btn} color="primary" autoFocus variant="contained">
           CONFIRM
         </Button>
       </DialogActions>
-    </Dialog>
+    </Dialog >
   );
 };
 
