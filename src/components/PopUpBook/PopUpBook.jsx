@@ -8,48 +8,27 @@ import Tea from '../../image/tea.svg';
 import Water from '../../image/water.svg';
 import Coffee from '../../image/coffee.svg';
 import Board from '../../image/board.png';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Button,
   Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
   FormControlLabel,
   FormGroup,
+  Radio,
+  RadioGroup,
+  TextField,
+  Typography,
 } from '@material-ui/core';
 
-const textFieldSettings = [
-  {
-    type: 'text',
-    label: 'ENTER NAME',
-    variant: 'outlined',
-    name: 'description',
-    required: true,
-  },
-  {
-    type: 'text',
-    label: 'ENTER ADDRESS',
-    variant: 'outlined',
-    name: 'address',
-    required: true,
-  },
-  {
-    type: 'number',
-    label: 'FLOOR',
-    variant: 'outlined',
-    name: 'floor',
-    required: true,
-  },
-  {
-    type: 'number',
-    label: 'MAX GUESTS',
-    variant: 'outlined',
-    name: 'guests',
-    required: true,
-  },
-];
 
 const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
   const [inputValues, setInputValues] = useState({
@@ -96,7 +75,49 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
           <span className={styles.room__info__other}>g.Minsk, Slobodskaya 121, room 32</span>
           <span className={styles.room__info__other}>9th Floor</span>
         </div>
-        <div className={styles.popup__containerCheckboxes}>
+        <div className={styles.popup__booking}>
+          <div>
+            <label className={styles.popup__booking__title} for="meeting-date">Choose a date for your appointment:</label>
+            <input className={styles.popup__booking__input} type="date" name="meeting-date" />
+          </div>
+          <div className={styles.popup__booking__time}>
+            <div>
+              <label className={styles.popup__booking__title} for="meeting-startTime">Start time:</label>
+              <input className={styles.popup__booking__input} type="time" name="meeting-startTime" />
+            </div>
+            <div className={styles.popup__booking__time__end}>
+              <label className={styles.popup__booking__title} for="meeting-endTime">End time:</label>
+              <input className={styles.popup__booking__input} type="time" name="meeting-endTime" />
+            </div>
+          </div>
+        </div>
+        <div className={styles.event}>
+          <Accordion>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1a-content"
+              id="panel1a-header"
+            >
+              <Typography variant="h7">Event type</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <FormControl component="fieldset">
+                <RadioGroup
+                  defaultValue="Presentation"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel value="Presentation" control={<Radio color='primary' />} label="Presentation" />
+                  <FormControlLabel value="Webinar" control={<Radio color='primary' />} label="Webinar" />
+                  <FormControlLabel value="Meeting" control={<Radio color='primary' />} label="Meeting" />
+                </RadioGroup>
+              </FormControl>
+            </AccordionDetails>
+          </Accordion>
+        </div>
+        <div  >
+          <TextField className={styles.popup__guests} fullWidth type='number' label='Guests number' variant='outlined' name='guests number' required inputProps={{ min: 0 }} />
+        </div>
+        <div className={styles.popup__container__checkboxes}>
           <FormGroup className={styles.popup__checkbox}>
             <FormControlLabel
               control={<Checkbox color="primary" />}

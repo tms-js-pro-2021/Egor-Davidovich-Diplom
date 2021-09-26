@@ -2,12 +2,13 @@
   display: flex;
   justify-content: center;
 
+
  &__title   {
     h2 {
       font-family: Montserrat;
       font-weight: bold;
       font-size: 48px;
-      margin-left: 150px;
+      align-self: center;
 
     }
 
@@ -16,12 +17,6 @@
  &__content {
   display: flex;
   flex-direction: column;
- }
-
- &__input {
-   div {
-   margin-bottom: 20px;
-   }
  }
 
  &__btnClose {
@@ -44,23 +39,63 @@
    margin-right: 10px;
  }
 
- &__containerCheckboxes {
+ &__container__checkboxes {
    display: flex;
    justify-content: space-around;
-   margin-bottom: 100px;
+
  }
  
  &__checkbox {
    span {
-  display: flex;
-  align-items: center; 
-}
-label{
-&:not(:last-child) {
-  margin-bottom: 20px;
+    display: flex;
+    align-items: center; 
+  }
+
+  label {
+    &:not(:last-child) {
+      margin-bottom: 20px;
    }
   }
  }
+
+ &__guests {
+  margin-bottom: 30px;
+
+  input {
+    border-color: black;
+
+  }
+}
+
+ &__booking{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-bottom: 50px;
+
+  &__title {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  &__input {
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  &__time {
+    display: flex;
+    margin-top: 30px;
+    &__end {
+      margin-left: 50px;
+    }
+  }
+
+}
+
+
 }
 
 .room__info {
@@ -77,4 +112,12 @@ label{
     &__other {
       font-size: 20px;
     }
+
 }
+
+.event {
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+
