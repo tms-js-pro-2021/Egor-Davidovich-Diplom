@@ -74,7 +74,12 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
       onClose={handleClose}
       aria-labelledby="alert-dialog-title"
     >
-      <Button className={styles.popup__btnClose} onClick={handleClose} variant="contained" color="secondary">
+      <Button
+        className={styles.popup__btnClose}
+        onClick={handleClose}
+        variant="contained"
+        color="secondary"
+      >
         <CloseIcon />
       </Button>
       <DialogTitle className={styles.popup__title} id="alert-dialog-title">
@@ -97,10 +102,21 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
         ))}
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} variant="contained" className={styles.popup__btn} color="secondary">
+        <Button
+          onClick={handleClose}
+          variant="contained"
+          className={styles.popup__btn}
+          color="secondary"
+        >
           CANCEL
         </Button>
-        <Button onClick={addRoomFromList} variant="contained" className={styles.popup__btn} color="primary" autoFocus>
+        <Button
+          onClick={addRoomFromList}
+          variant="contained"
+          className={styles.popup__btn}
+          color="primary"
+          autoFocus
+        >
           ADD ROOM
         </Button>
       </DialogActions>

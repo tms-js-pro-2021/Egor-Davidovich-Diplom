@@ -29,7 +29,6 @@ import {
   Typography,
 } from '@material-ui/core';
 
-
 const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
   const [inputValues, setInputValues] = useState({
     description: '',
@@ -63,7 +62,12 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
       onClose={handleClose}
       aria-labelledby="alert-dialog-title"
     >
-      <Button className={styles.popup__btnClose} onClick={handleClose} variant="contained" color="secondary">
+      <Button
+        className={styles.popup__btnClose}
+        onClick={handleClose}
+        variant="contained"
+        color="secondary"
+      >
         <CloseIcon />
       </Button>
       <DialogTitle className={styles.popup__title} id="alert-dialog-title">
@@ -77,16 +81,26 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
         </div>
         <div className={styles.popup__booking}>
           <div>
-            <label className={styles.popup__booking__title} for="meeting-date">Choose a date for your appointment:</label>
+            <label className={styles.popup__booking__title} for="meeting-date">
+              Choose a date for your appointment:
+            </label>
             <input className={styles.popup__booking__input} type="date" name="meeting-date" />
           </div>
           <div className={styles.popup__booking__time}>
             <div>
-              <label className={styles.popup__booking__title} for="meeting-startTime">Start time:</label>
-              <input className={styles.popup__booking__input} type="time" name="meeting-startTime" />
+              <label className={styles.popup__booking__title} for="meeting-startTime">
+                Start time:
+              </label>
+              <input
+                className={styles.popup__booking__input}
+                type="time"
+                name="meeting-startTime"
+              />
             </div>
             <div className={styles.popup__booking__time__end}>
-              <label className={styles.popup__booking__title} for="meeting-endTime">End time:</label>
+              <label className={styles.popup__booking__title} for="meeting-endTime">
+                End time:
+              </label>
               <input className={styles.popup__booking__input} type="time" name="meeting-endTime" />
             </div>
           </div>
@@ -102,20 +116,38 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
             </AccordionSummary>
             <AccordionDetails>
               <FormControl component="fieldset">
-                <RadioGroup
-                  defaultValue="Presentation"
-                  name="radio-buttons-group"
-                >
-                  <FormControlLabel value="Presentation" control={<Radio color='primary' />} label="Presentation" />
-                  <FormControlLabel value="Webinar" control={<Radio color='primary' />} label="Webinar" />
-                  <FormControlLabel value="Meeting" control={<Radio color='primary' />} label="Meeting" />
+                <RadioGroup defaultValue="Presentation" name="radio-buttons-group">
+                  <FormControlLabel
+                    value="Presentation"
+                    control={<Radio color="primary" />}
+                    label="Presentation"
+                  />
+                  <FormControlLabel
+                    value="Webinar"
+                    control={<Radio color="primary" />}
+                    label="Webinar"
+                  />
+                  <FormControlLabel
+                    value="Meeting"
+                    control={<Radio color="primary" />}
+                    label="Meeting"
+                  />
                 </RadioGroup>
               </FormControl>
             </AccordionDetails>
           </Accordion>
         </div>
-        <div  >
-          <TextField className={styles.popup__guests} fullWidth type='number' label='Guests number' variant='outlined' name='guests number' required inputProps={{ min: 0 }} />
+        <div>
+          <TextField
+            className={styles.popup__guests}
+            fullWidth
+            type="number"
+            label="Guests number"
+            variant="outlined"
+            name="guests number"
+            required
+            inputProps={{ min: 0 }}
+          />
         </div>
         <div className={styles.popup__container__checkboxes}>
           <FormGroup className={styles.popup__checkbox}>
@@ -186,16 +218,27 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
             />
           </FormGroup>
         </div>
-      </DialogContent >
+      </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} className={styles.popup__btn} color="secondary" variant="contained">
+        <Button
+          onClick={handleClose}
+          className={styles.popup__btn}
+          color="secondary"
+          variant="contained"
+        >
           CANCEL
         </Button>
-        <Button onClick={addRoomFromList} className={styles.popup__btn} color="primary" autoFocus variant="contained">
+        <Button
+          onClick={addRoomFromList}
+          className={styles.popup__btn}
+          color="primary"
+          autoFocus
+          variant="contained"
+        >
           CONFIRM
         </Button>
       </DialogActions>
-    </Dialog >
+    </Dialog>
   );
 };
 
