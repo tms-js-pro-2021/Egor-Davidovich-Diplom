@@ -4,14 +4,13 @@ import Footer from '../Footer';
 import styles from './Container.module.scss';
 import { useLocation } from 'react-router';
 
-
 const Container = ({ children }) => {
-  const location  = useLocation();
+  const location = useLocation();
   return (
     <>
-      {location.pathname !== '/login' && <Header />}
+      {location.pathname !== '/login' && location.pathname !== '/' && <Header />}
       <div className={styles.wrapper}>{children}</div>
-      {location.pathname !== '/login' && <Footer />}
+      {location.pathname !== '/login' && location.pathname !== '/' && <Footer />}
     </>
   );
 };

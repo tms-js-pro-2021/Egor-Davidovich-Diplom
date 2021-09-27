@@ -10,14 +10,14 @@ const App = () => {
     <Router>
       <Container>
         <Switch>
+          <Route path="/">
+            <LoginForm />
+          </Route>
           <Route path="/login">
             <LoginForm />
           </Route>
           <Route path="/home">
             <Home />
-          </Route>
-          <Route path="/">
-            <LoginForm />
           </Route>
         </Switch>
       </Container>
