@@ -13,11 +13,8 @@ const App = () => {
           <Route path="/login">
             <LoginForm />
           </Route>
-          <Route path="/home">
-            <Home />
-          </Route>
           <Route exact path="/">
-            <LoginForm />
+            <Home />
           </Route>
         </Switch>
       </Container>

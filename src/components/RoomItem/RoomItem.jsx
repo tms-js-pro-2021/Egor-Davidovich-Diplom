@@ -15,10 +15,9 @@ const RoomItem = ({ handleDeleteRoom, ...item }) => {
         <img className={styles.room__image} src={roomImage} alt="room" />
         <div>
           <div className={styles.room__description}>
-            <span>Guests: 12</span>
             <span>Address:</span>
-            <span>g.Minsk, Slobodskaya 121, room 32</span>
-            <span>Floor: 14</span>
+            <span>{item.address}</span>
+            <span>Floor: {item.floor}</span>
           </div>
         </div>
         <div>

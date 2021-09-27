@@ -8,13 +8,13 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   const history = useHistory();
 
-  const handleLogOut = () => {
+  const handleLogIn = () => {
     history.replace('/login');
   };
 
   return (
     <div className={styles.header}>
-      <Link to="/home">
+      <Link to="/">
         <img className={styles.header__logo} src={MyConference} />
       </Link>
       <nav className={styles.nav}>
@@ -31,13 +31,13 @@ const Header = () => {
           CONTACT US
         </a>
       </nav>
-      <button onClick={handleLogOut} className={styles.button__logout}>
+      <button onClick={handleLogIn} className={styles.button__login}>
         <ExitToAppTwoToneIcon
           style={{
             fontSize: '3rem',
           }}
         />
-        <span className={styles.button__logout__text}>LOG OUT</span>
+        <span className={styles.button__login__text}>LOG IN</span>
       </button>
     </div>
   );

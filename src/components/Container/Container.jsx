@@ -8,9 +8,9 @@ const Container = ({ children }) => {
   const location = useLocation();
   return (
     <>
-      {location.pathname !== '/login' && location.pathname !== '/' && <Header />}
+      {location.pathname !== '/login'  && <Header />}
       <div className={styles.wrapper}>{children}</div>
-      {location.pathname !== '/login' && location.pathname !== '/' && <Footer />}
+      {location.pathname !== '/login' && <Footer />}
     </>
   );
 };

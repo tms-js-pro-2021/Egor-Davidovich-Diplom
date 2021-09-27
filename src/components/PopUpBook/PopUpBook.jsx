@@ -29,24 +29,50 @@ import {
   Typography,
 } from '@material-ui/core';
 
-const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
+const PopUpBook = ({ open, handleClose,  ...item }) => {
   const [inputValues, setInputValues] = useState({
     description: '',
     address: '',
     floor: '',
-    guests: '',
   });
 
-  const addRoomFromList = () => {
-    handleAddRoom({ ...inputValues });
-    handleClose();
-    setInputValues({
-      description: '',
-      address: '',
-      floor: '',
-      guests: '',
-    });
+  const handleBookRoom = () => {
+    const bookRoom = {
+      guests,
+      startDateTime: null,
+      endDateTime: null,
+      stuff: {
+        coffee: true,
+        tea: false,
+        projector: false,
+        water: true,
+        webCamera: false,
+        board: true,
+        catering: false,
+      },
+      custoFields: {
+        eventType: "",
+      }
+    };
+    try {
+      fetch(`https://tms-js-pro-back-end.herokuapp.com/api/meet-events`, {
+        method: 'POST',
+        body: JSON.stringify(bookRoom),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization:
+            'Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtlbWFsa2FsYW5kYXJvdkBnbWFpbC5jb20iLCJpZCI6IjYxMDJiOWMxMmFhYTkwMGMwZTI2OGFkZSIsImV4cCI6MTYzNjM5NTk5NSwiaWF0IjoxNjMxMjExOTk1fQ.C-rdvGj-bj16smVKORldxkTYw75ZHu1aBXtlQ5ivk-o',
+        },
+      })
+        .then((response) => response.json())
+        .then((response) => {
+          setRooms([...rooms, { ...newRoom, ...response }]);
+        });
+    } catch (error) {
+      console.log('SERVER ERROR');
+    }
   };
+
 
   const setInputValue = (event) => {
     setInputValues({
@@ -230,7 +256,7 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
           CANCEL
         </Button>
         <Button
-          onClick={addRoomFromList}
+          onClick={handleBookRoom}
           className={styles.popup__btn}
           color="primary"
           autoFocus

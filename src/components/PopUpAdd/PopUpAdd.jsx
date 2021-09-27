@@ -31,14 +31,7 @@ const textFieldSettings = [
     variant: 'outlined',
     name: 'floor',
     required: true,
-  },
-  {
-    type: 'number',
-    label: 'MAX GUESTS',
-    variant: 'outlined',
-    name: 'guests',
-    required: true,
-  },
+  }
 ];
 
 const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
@@ -46,7 +39,6 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
     description: '',
     address: '',
     floor: '',
-    guests: '',
   });
 
   const addRoomFromList = () => {
@@ -56,7 +48,6 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
       description: '',
       address: '',
       floor: '',
-      guests: '',
     });
   };
 

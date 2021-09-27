@@ -10,7 +10,7 @@ const MainContent = () => {
 
   useEffect(() => {
     try {
-      fetch('https://tms-js-pro-back-end.herokuapp.com/api/todos', {
+      fetch('https://tms-js-pro-back-end.herokuapp.com/api/meet-events/', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -24,6 +24,8 @@ const MainContent = () => {
       console.log('SERVER ERROR');
     }
   }, []);
+
+  console.log(rooms);
 
   const handleDeleteRoom = (id) => {
     try {
@@ -43,26 +45,14 @@ const MainContent = () => {
     }
   };
 
-  const handleAddRoom = ({ description, guests, address, floor }) => {
+  const handleAddRoom = ({ description, address, floor }) => {
     const newRoom = {
       description,
-      guests,
       address,
       floor,
-      startDateTime: null,
-      endDateTime: null,
-      stuff: {
-        coffee: false,
-        tea: false,
-        projector: false,
-        water: true,
-        webCamera: false,
-        board: true,
-        catering: false,
-      },
     };
     try {
-      fetch(`https://tms-js-pro-back-end.herokuapp.com/api/todos`, {
+      fetch(`https://tms-js-pro-back-end.herokuapp.com/api/meet-events`, {
         method: 'POST',
         body: JSON.stringify(newRoom),
         headers: {
