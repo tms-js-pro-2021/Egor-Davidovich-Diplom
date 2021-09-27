@@ -62,6 +62,7 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
       onClose={handleClose}
       aria-labelledby="scroll-dialog-title"
       aria-describedby="scroll-dialog-description"
+      overflow="scroll"
     >
       <Button
         className={styles.popup__btnClose}
