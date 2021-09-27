@@ -83,16 +83,14 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
         </div>
         <div className={styles.popup__booking}>
           <div>
-            <label className={styles.popup__booking__title} for="meeting-date">
+            <label className={styles.popup__booking__title}>
               Choose a date for your appointment:
             </label>
             <input className={styles.popup__booking__input} type="date" name="meeting-date" />
           </div>
           <div className={styles.popup__booking__time}>
             <div>
-              <label className={styles.popup__booking__title} for="meeting-startTime">
-                Start time:
-              </label>
+              <label className={styles.popup__booking__title}> Start time:</label>
               <input
                 className={styles.popup__booking__input}
                 type="time"
@@ -100,9 +98,7 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
               />
             </div>
             <div className={styles.popup__booking__time__end}>
-              <label className={styles.popup__booking__title} for="meeting-endTime">
-                End time:
-              </label>
+              <label className={styles.popup__booking__title}> End time:</label>
               <input className={styles.popup__booking__input} type="time" name="meeting-endTime" />
             </div>
           </div>
@@ -114,7 +110,7 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
               aria-controls="panel1a-content"
               id="panel1a-header"
             >
-              <Typography variant="h7">Event type</Typography>
+              <Typography variant="h6">Event type</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <FormControl component="fieldset">
@@ -151,6 +147,9 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
             inputProps={{ min: 0 }}
           />
         </div>
+        <Typography className={styles.popup__features} variant="h5">
+          Choose extra features
+        </Typography>
         <div className={styles.popup__container__checkboxes}>
           <FormGroup className={styles.popup__checkbox}>
             <FormControlLabel
