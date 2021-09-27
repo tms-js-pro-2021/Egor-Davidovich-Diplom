@@ -16,6 +16,9 @@ const App = () => {
           <Route path="/home">
             <Home />
           </Route>
+          <Route path="/">
+            <LoginForm />
+          </Route>
         </Switch>
       </Container>
     </Router>

@@ -60,7 +60,8 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
       className={styles.popup}
       open={open}
       onClose={handleClose}
-      aria-labelledby="alert-dialog-title"
+      aria-labelledby="scroll-dialog-title"
+      aria-describedby="scroll-dialog-description"
     >
       <Button
         className={styles.popup__btnClose}
@@ -70,7 +71,7 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
       >
         <CloseIcon />
       </Button>
-      <DialogTitle className={styles.popup__title} id="alert-dialog-title">
+      <DialogTitle className={styles.popup__title} id="scroll-dialog-title">
         BOOKING
       </DialogTitle>
       <DialogContent className={styles.popup__content}>
@@ -106,7 +107,7 @@ const PopUpBook = ({ open, handleClose, handleAddRoom, ...item }) => {
           </div>
         </div>
         <div className={styles.event}>
-          <Accordion>
+          <Accordion scroll="body">
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1a-content"
