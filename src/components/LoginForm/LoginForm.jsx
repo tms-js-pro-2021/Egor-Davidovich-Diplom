@@ -10,15 +10,17 @@ const LoginForm = () => {
 
   const handleLoginClick = (values) => {
     try {
-      fetch('https://tms-js-pro-back-end.herokuapp.com/api/users/signup', {
+      fetch('https://tms-js-pro-back-end.herokuapp.com/api/users/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(values),
-      }).then((data) => {
-        if (data.status === 200) {
-          history.push('/');
+      }).then((response) => {
+        if (response.status === 200) {
+          response.json().then(() => {
+            history.push('/');
+          });
         }
       });
     } catch (error) {

@@ -29,7 +29,7 @@ import {
   Typography,
 } from '@material-ui/core';
 
-const PopUpBook = ({ open, handleClose,  ...item }) => {
+const PopUpBook = ({ open, handleClose, ...item }) => {
   const [inputValues, setInputValues] = useState({
     description: '',
     address: '',
@@ -39,21 +39,47 @@ const PopUpBook = ({ open, handleClose,  ...item }) => {
   const handleBookRoom = () => {
     const bookRoom = {
       guests,
-      startDateTime: null,
-      endDateTime: null,
+      startDateTime,
+      endDateTime,
       stuff: {
-        coffee: true,
+        coffee,
+        tea,
+        projector,
+        water,
+        webCamera,
+        board,
+        catering,
+      },
+      custoFields: {
+        eventType,
+      },
+    };
+
+    const [inputValues, setInputValues] = useState({
+      guests: '',
+      startDateTime: '',
+      endDateTime: '',
+      stuff: {
+        coffee: false,
         tea: false,
         projector: false,
-        water: true,
+        water: false,
         webCamera: false,
-        board: true,
+        board: false,
         catering: false,
       },
       custoFields: {
-        eventType: "",
-      }
+        eventType: '',
+      },
+    });
+
+    const setInputValue = (event) => {
+      setInputValues({
+        ...inputValues,
+        [event.target.name]: event.target.value,
+      });
     };
+
     try {
       fetch(`https://tms-js-pro-back-end.herokuapp.com/api/meet-events`, {
         method: 'POST',
@@ -72,7 +98,6 @@ const PopUpBook = ({ open, handleClose,  ...item }) => {
       console.log('SERVER ERROR');
     }
   };
-
 
   const setInputValue = (event) => {
     setInputValues({
@@ -104,8 +129,8 @@ const PopUpBook = ({ open, handleClose,  ...item }) => {
       <DialogContent className={styles.popup__content}>
         <div className={styles.room__info}>
           <span className={styles.room__info__title}>{item.description}</span>
-          <span className={styles.room__info__other}>g.Minsk, Slobodskaya 121, room 32</span>
-          <span className={styles.room__info__other}>9th Floor</span>
+          <span className={styles.room__info__other}>Address: {item.address}</span>
+          <span className={styles.room__info__other}>Floor: {item.floor}</span>
         </div>
         <div className={styles.popup__booking}>
           <div>

@@ -10,7 +10,7 @@ const MainContent = () => {
 
   useEffect(() => {
     try {
-      fetch('https://tms-js-pro-back-end.herokuapp.com/api/meet-events/', {
+      fetch('https://tms-js-pro-back-end.herokuapp.com/api/meet-rooms/', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ const MainContent = () => {
 
   const handleDeleteRoom = (id) => {
     try {
-      fetch(`https://tms-js-pro-back-end.herokuapp.com/api/todos/${id}`, {
+      fetch(`https://tms-js-pro-back-end.herokuapp.com/api/meet-rooms/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -52,7 +52,7 @@ const MainContent = () => {
       floor,
     };
     try {
-      fetch(`https://tms-js-pro-back-end.herokuapp.com/api/meet-events`, {
+      fetch('https://tms-js-pro-back-end.herokuapp.com/api/meet-rooms/', {
         method: 'POST',
         body: JSON.stringify(newRoom),
         headers: {
