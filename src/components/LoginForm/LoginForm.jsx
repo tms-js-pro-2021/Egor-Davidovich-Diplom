@@ -4,13 +4,14 @@ import styles from './LoginForm.module.scss';
 import Logo from '../../image/logImage.svg';
 import { Formik } from 'formik';
 import { useHistory } from 'react-router';
+import { api } from '../../Api';
 
 const LoginForm = () => {
   const history = useHistory();
 
   const handleLoginClick = (values) => {
     try {
-      fetch('https://tms-js-pro-back-end.herokuapp.com/api/users/signin', {
+      fetch(api.signIn, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -18,8 +19,10 @@ const LoginForm = () => {
         body: JSON.stringify(values),
       }).then((response) => {
         if (response.status === 200) {
-          response.json().then(() => {
+          response.json().then((data) => {
+            const token = data.token;
             history.push('/');
+            console.log(token);
           });
         }
       });

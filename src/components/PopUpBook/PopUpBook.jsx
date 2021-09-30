@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { api } from '../../Api';
 import CloseIcon from '@material-ui/icons/Close';
 import styles from './PopUpBook.module.scss';
 import Projector from '../../image/projector.svg';
@@ -29,13 +30,76 @@ import {
   Typography,
 } from '@material-ui/core';
 
-const PopUpBook = ({ open, handleClose, ...item }) => {
-  const [inputValues, setInputValues] = useState({
-    description: '',
-    address: '',
-    floor: '',
-  });
+const inputSettings = [
+  {
+    type: 'date',
+    name: 'meeting-date',
+  },
+  {
+    type: 'time',
+    name: 'meeting-startTime',
+  },
+  {
+    type: 'time',
+    name: 'meeting-endTime',
+  },
 
+  {
+    fullWidth: true,
+    type: 'number',
+    label: 'Guests number',
+    variant: 'outlined',
+    name: 'guests-number',
+    required: true,
+  },
+];
+
+const PopUpBook = ({ open, handleClose, ...item }) => {
+  const [rooms, setRooms] = useState([]);
+
+  useEffect(() => {
+    try {
+      fetch(api.bookRoom, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          // Authorization:
+          //   'Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtlbWFsa2FsYW5kYXJvdkBnbWFpbC5jb20iLCJpZCI6IjYxMDJiOWMxMmFhYTkwMGMwZTI2OGFkZSIsImV4cCI6MTYzNjM5NTk5NSwiaWF0IjoxNjMxMjExOTk1fQ.C-rdvGj-bj16smVKORldxkTYw75ZHu1aBXtlQ5ivk-o',
+        },
+      })
+        .then((data) => data.json())
+        .then((data) => setRooms(data));
+    } catch (error) {
+      console.log('SERVER ERROR');
+      console.log(data);
+    }
+  }, []);
+
+  const [inputValues, setInputValues] = useState({
+    guests: '',
+    startDateTime: '',
+    endDateTime: '',
+    stuff: {
+      coffee: false,
+      tea: false,
+      projector: false,
+      water: false,
+      webCamera: false,
+      board: false,
+      catering: false,
+    },
+    custoFields: {
+      eventType: '',
+    },
+  });
+  console.log(item);
+
+  const setInputValue = (event) => {
+    setInputValues({
+      ...inputValues,
+      [event.target.name]: event.target.value,
+    });
+  };
   const handleBookRoom = () => {
     const bookRoom = {
       guests,
@@ -54,40 +118,14 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
         eventType,
       },
     };
-
-    const [inputValues, setInputValues] = useState({
-      guests: '',
-      startDateTime: '',
-      endDateTime: '',
-      stuff: {
-        coffee: false,
-        tea: false,
-        projector: false,
-        water: false,
-        webCamera: false,
-        board: false,
-        catering: false,
-      },
-      custoFields: {
-        eventType: '',
-      },
-    });
-
-    const setInputValue = (event) => {
-      setInputValues({
-        ...inputValues,
-        [event.target.name]: event.target.value,
-      });
-    };
-
     try {
-      fetch(`https://tms-js-pro-back-end.herokuapp.com/api/meet-events`, {
+      fetch(api.bookRoom, {
         method: 'POST',
         body: JSON.stringify(bookRoom),
         headers: {
           'Content-Type': 'application/json',
-          Authorization:
-            'Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtlbWFsa2FsYW5kYXJvdkBnbWFpbC5jb20iLCJpZCI6IjYxMDJiOWMxMmFhYTkwMGMwZTI2OGFkZSIsImV4cCI6MTYzNjM5NTk5NSwiaWF0IjoxNjMxMjExOTk1fQ.C-rdvGj-bj16smVKORldxkTYw75ZHu1aBXtlQ5ivk-o',
+          // Authorization:
+          //   'Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtlbWFsa2FsYW5kYXJvdkBnbWFpbC5jb20iLCJpZCI6IjYxMDJiOWMxMmFhYTkwMGMwZTI2OGFkZSIsImV4cCI6MTYzNjM5NTk5NSwiaWF0IjoxNjMxMjExOTk1fQ.C-rdvGj-bj16smVKORldxkTYw75ZHu1aBXtlQ5ivk-o',
         },
       })
         .then((response) => response.json())
@@ -97,13 +135,6 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
     } catch (error) {
       console.log('SERVER ERROR');
     }
-  };
-
-  const setInputValue = (event) => {
-    setInputValues({
-      ...inputValues,
-      [event.target.name]: event.target.value,
-    });
   };
 
   return (
@@ -137,20 +168,34 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
             <label className={styles.popup__booking__title}>
               Choose a date for your appointment:
             </label>
-            <input className={styles.popup__booking__input} type="date" name="meeting-date" />
+            <input
+              className={styles.popup__booking__input}
+              // value={inputValues[input.name]}
+              // onChange={setInputValue}
+              type="date"
+              name="meeting-date"
+            />
           </div>
           <div className={styles.popup__booking__time}>
             <div>
               <label className={styles.popup__booking__title}> Start time:</label>
               <input
                 className={styles.popup__booking__input}
+                // value={inputValues[input.name]}
+                // onChange={setInputValue}
                 type="time"
                 name="meeting-startTime"
               />
             </div>
             <div className={styles.popup__booking__time__end}>
               <label className={styles.popup__booking__title}> End time:</label>
-              <input className={styles.popup__booking__input} type="time" name="meeting-endTime" />
+              <input
+                className={styles.popup__booking__input}
+                // value={inputValues[input.name]}
+                // onChange={setInputValue}
+                type="time"
+                name="meeting-endTime"
+              />
             </div>
           </div>
         </div>
@@ -165,7 +210,12 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
             </AccordionSummary>
             <AccordionDetails>
               <FormControl component="fieldset">
-                <RadioGroup defaultValue="Presentation" name="radio-buttons-group">
+                <RadioGroup
+                  defaultValue="Presentation"
+                  // value={inputValues[input.name]}
+                  // onChange={setInputValue}
+                  name="radio-buttons-group"
+                >
                   <FormControlLabel
                     value="Presentation"
                     control={<Radio color="primary" />}
@@ -196,6 +246,8 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
             name="guests number"
             required
             inputProps={{ min: 0 }}
+            // value={inputValues[input.name]}
+            // onChange={setInputValue}
           />
         </div>
         <Typography className={styles.popup__features} variant="h5">
@@ -204,7 +256,13 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
         <div className={styles.popup__container__checkboxes}>
           <FormGroup className={styles.popup__checkbox}>
             <FormControlLabel
-              control={<Checkbox color="primary" />}
+              control={
+                <Checkbox
+                  // value={inputValues[input.name]}
+                  // onChange={setInputValue}
+                  color="primary"
+                />
+              }
               label={
                 <React.Fragment>
                   <img className={styles.popup__img} src={Projector} />
@@ -213,7 +271,13 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
               }
             />
             <FormControlLabel
-              control={<Checkbox color="primary" />}
+              control={
+                <Checkbox
+                  // value={inputValues[input.name]}
+                  // onChange={setInputValue}
+                  color="primary"
+                />
+              }
               label={
                 <React.Fragment>
                   <img className={styles.popup__img} src={WebCam} />
@@ -222,7 +286,13 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
               }
             />
             <FormControlLabel
-              control={<Checkbox color="primary" />}
+              control={
+                <Checkbox
+                  // value={inputValues[input.name]}
+                  // onChange={setInputValue}
+                  color="primary"
+                />
+              }
               label={
                 <React.Fragment>
                   <img className={styles.popup__img} src={Board} />
@@ -233,7 +303,13 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
           </FormGroup>
           <FormGroup className={styles.popup__checkbox}>
             <FormControlLabel
-              control={<Checkbox color="primary" />}
+              control={
+                <Checkbox
+                  // value={inputValues[input.name]}
+                  // onChange={setInputValue}
+                  color="primary"
+                />
+              }
               label={
                 <React.Fragment>
                   <img className={styles.popup__img} src={Catering} />
@@ -242,7 +318,13 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
               }
             />
             <FormControlLabel
-              control={<Checkbox color="primary" />}
+              control={
+                <Checkbox
+                  // value={inputValues[input.name]}
+                  // onChange={setInputValue}
+                  color="primary"
+                />
+              }
               label={
                 <React.Fragment>
                   <img className={styles.popup__img} src={Coffee} />
@@ -251,7 +333,13 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
               }
             />
             <FormControlLabel
-              control={<Checkbox color="primary" />}
+              control={
+                <Checkbox
+                  // value={inputValues[input.name]}
+                  // onChange={setInputValue}
+                  color="primary"
+                />
+              }
               label={
                 <React.Fragment>
                   <img className={styles.popup__img} src={Tea} />
@@ -260,7 +348,13 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
               }
             />
             <FormControlLabel
-              control={<Checkbox color="primary" />}
+              control={
+                <Checkbox
+                  // value={inputValues[input.name]}
+                  // onChange={setInputValue}
+                  color="primary"
+                />
+              }
               label={
                 <React.Fragment>
                   <img className={styles.popup__img} src={Water} />

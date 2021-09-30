@@ -3,6 +3,7 @@ import RoomList from '../RoomList';
 import styles from './MainContent.module.scss';
 import AddToPhotosOutlinedIcon from '@material-ui/icons/AddToPhotosOutlined';
 import PopUpAdd from '../PopUpAdd/PopUpAdd';
+import { api } from '../../Api';
 
 const MainContent = () => {
   const [isShowPopupAdd, setIsShowPopupAdd] = useState(false);
@@ -10,12 +11,12 @@ const MainContent = () => {
 
   useEffect(() => {
     try {
-      fetch('https://tms-js-pro-back-end.herokuapp.com/api/meet-rooms/', {
+      fetch(api.rooms, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization:
-            'Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtlbWFsa2FsYW5kYXJvdkBnbWFpbC5jb20iLCJpZCI6IjYxMDJiOWMxMmFhYTkwMGMwZTI2OGFkZSIsImV4cCI6MTYzNjM5NTk5NSwiaWF0IjoxNjMxMjExOTk1fQ.C-rdvGj-bj16smVKORldxkTYw75ZHu1aBXtlQ5ivk-o',
+          // Authorization:
+          //   'Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtlbWFsa2FsYW5kYXJvdkBnbWFpbC5jb20iLCJpZCI6IjYxMDJiOWMxMmFhYTkwMGMwZTI2OGFkZSIsImV4cCI6MTYzNjM5NTk5NSwiaWF0IjoxNjMxMjExOTk1fQ.C-rdvGj-bj16smVKORldxkTYw75ZHu1aBXtlQ5ivk-o',
         },
       })
         .then((data) => data.json())
@@ -25,11 +26,9 @@ const MainContent = () => {
     }
   }, []);
 
-  console.log(rooms);
-
   const handleDeleteRoom = (id) => {
     try {
-      fetch(`https://tms-js-pro-back-end.herokuapp.com/api/meet-rooms/${id}`, {
+      fetch(`${api.rooms}${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -52,13 +51,13 @@ const MainContent = () => {
       floor,
     };
     try {
-      fetch('https://tms-js-pro-back-end.herokuapp.com/api/meet-rooms/', {
+      fetch(api.rooms, {
         method: 'POST',
         body: JSON.stringify(newRoom),
         headers: {
           'Content-Type': 'application/json',
-          Authorization:
-            'Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtlbWFsa2FsYW5kYXJvdkBnbWFpbC5jb20iLCJpZCI6IjYxMDJiOWMxMmFhYTkwMGMwZTI2OGFkZSIsImV4cCI6MTYzNjM5NTk5NSwiaWF0IjoxNjMxMjExOTk1fQ.C-rdvGj-bj16smVKORldxkTYw75ZHu1aBXtlQ5ivk-o',
+          // Authorization:
+          //   'Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtlbWFsa2FsYW5kYXJvdkBnbWFpbC5jb20iLCJpZCI6IjYxMDJiOWMxMmFhYTkwMGMwZTI2OGFkZSIsImV4cCI6MTYzNjM5NTk5NSwiaWF0IjoxNjMxMjExOTk1fQ.C-rdvGj-bj16smVKORldxkTYw75ZHu1aBXtlQ5ivk-o',
         },
       })
         .then((response) => response.json())
