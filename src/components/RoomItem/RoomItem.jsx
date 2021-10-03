@@ -5,9 +5,10 @@ import roomImage from '../../image/room.svg';
 import PopUpDel from '../PopUpDel';
 import PopUpBook from '../PopUpBook';
 
-const RoomItem = ({ handleDeleteRoom, ...item }) => {
+const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
   const [isShowPopupDel, setIsShowPopupDel] = useState(false);
   const [isShowPopupBook, setIsShowPopupBook] = useState(false);
+
   return (
     <div className={styles.room}>
       <span className={styles.room__title}>{item.description}</span>
@@ -18,18 +19,19 @@ const RoomItem = ({ handleDeleteRoom, ...item }) => {
             <span>Address:</span>
             <span>{item.address}</span>
             <span>Floor: {item.floor}</span>
+            <span>Booked:{ }</span>
           </div>
         </div>
         <div>
           <button onClick={() => setIsShowPopupBook(true)} className={classnames(styles.room__buttons__more, styles.room__buttons)}>
             Book
           </button>
-          <button
+          {token && <button
             onClick={() => setIsShowPopupDel(true)}
             className={classnames(styles.room__buttons__delete, styles.room__buttons)}
           >
             Delete room
-          </button>
+          </button>}
         </div>
       </div>
       <PopUpDel
@@ -38,10 +40,11 @@ const RoomItem = ({ handleDeleteRoom, ...item }) => {
         handleDeleteRoom={handleDeleteRoom}
         id={item.id}
       />
-      <PopUpBook 
-      open={isShowPopupBook}
-      handleClose={() => setIsShowPopupBook(false)}
-      {...item}
+      <PopUpBook
+        open={isShowPopupBook}
+        id={item.id}
+        handleClose={() => setIsShowPopupBook(false)}
+        {...item}
       />
     </div>
   );

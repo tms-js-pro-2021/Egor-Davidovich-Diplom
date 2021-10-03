@@ -9,12 +9,8 @@ import Tea from '../../image/tea.svg';
 import Water from '../../image/water.svg';
 import Coffee from '../../image/coffee.svg';
 import Board from '../../image/board.png';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
   Button,
   Checkbox,
   Dialog,
@@ -24,28 +20,20 @@ import {
   FormControl,
   FormControlLabel,
   MenuItem,
-  FormGroup,
-  Radio,
-  RadioGroup,
   TextField,
   Typography,
 } from '@material-ui/core';
 
 const inputSettings = [
   {
-    type: 'date',
-    name: 'meeting-date',
-    text: 'Choose a date for your appointment:',
+    type: "datetime-local",
+    name: 'startDateTime',
+    text: 'Start Date and Time:',
   },
   {
-    type: 'time',
-    name: 'meeting-startTime',
-    text: 'Start Time:',
-  },
-  {
-    type: 'time',
-    name: 'meeting-endTime',
-    text: 'End Time:',
+    type: "datetime-local",
+    name: 'endDateTime',
+    text: 'End Date and Time:',
   },
   {
     text: 'Guests:',
@@ -53,25 +41,7 @@ const inputSettings = [
     label: 'Guests number',
     name: 'guests',
   },
-  {
-    select: true,
-    name: 'event-type',
-    text: "Please select your event type:",
-    options: [
-      {
-        value: 'Meeting',
-        label: 'Meeting',
-      },
-      {
-        value: 'Presentation',
-        label: 'Presentation',
-      },
-      {
-        value: 'Webinar',
-        label: 'Webinar',
-      },
-    ]
-  },
+
   {
     type: 'checkbox',
     name: 'projector',
@@ -118,7 +88,7 @@ const inputSettings = [
 
 
 
-const PopUpBook = ({ open, handleClose, ...item }) => {
+const PopUpBook = ({ open, handleClose, id, ...item }) => {
   const [rooms, setRooms] = useState([]);
 
   // useEffect(() => {
@@ -143,9 +113,9 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
     guests: '',
     startDateTime: '',
     endDateTime: '',
-    
-
+    meetRoom: id
   });
+
   const [checkboxValues, setCheckBoxValues] = useState({
     stuff: {
       coffee: false,
@@ -157,7 +127,6 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
       catering: false,
     },
   })
-
 
 
   // const [inputValues, setInputValues] = useState(inputSettings.reduce((acc,current) => {
@@ -186,41 +155,38 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
       }
     });
   };
+
+
+
   const handleBookRoom = () => {
-    const bookRoom = {
-      guests,
-      startDateTime,
-      endDateTime,
-      eventType: '',
-      stuff: {
-        coffee,
-        tea,
-        projector,
-        water,
-        webCamera,
-        board,
-        catering,
-      },
-    };
+    const updatedState = {
+      ...checkboxValues,
+      ...inputValues,
+      startDateTime: Date.parse(inputValues.startDateTime),
+      endDateTime: Date.parse(inputValues.endDateTime),
+
+    }
     try {
       fetch(api.bookRoom, {
         method: 'POST',
-        body: JSON.stringify(bookRoom),
+        body: JSON.stringify(updatedState),
         headers: {
           'Content-Type': 'application/json',
-          // Authorization:
-          //   'Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtlbWFsa2FsYW5kYXJvdkBnbWFpbC5jb20iLCJpZCI6IjYxMDJiOWMxMmFhYTkwMGMwZTI2OGFkZSIsImV4cCI6MTYzNjM5NTk5NSwiaWF0IjoxNjMxMjExOTk1fQ.C-rdvGj-bj16smVKORldxkTYw75ZHu1aBXtlQ5ivk-o',
+          Authorization:
+            'Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtlbWFsa2FsYW5kYXJvdkBnbWFpbC5jb20iLCJpZCI6IjYxMDJiOWMxMmFhYTkwMGMwZTI2OGFkZSIsImV4cCI6MTYzNjM5NTk5NSwiaWF0IjoxNjMxMjExOTk1fQ.C-rdvGj-bj16smVKORldxkTYw75ZHu1aBXtlQ5ivk-o',
         },
       })
         .then((response) => response.json())
-        .then((response) => {
-          setRooms([...rooms, { ...newRoom, ...response }]);
-        });
+        .then(() => handleClose(), setInputValues({
+          guests: '',
+          startDateTime: '',
+          endDateTime: '',
+        }))
     } catch (error) {
       console.log('SERVER ERROR');
     }
   };
-  console.log({ ...inputValues, ...checkboxValues })
+
   return (
     <Dialog
       className={styles.popup}
@@ -270,25 +236,15 @@ const PopUpBook = ({ open, handleClose, ...item }) => {
                         <TextField
                           className={styles.popup__booking__input}
                           value={inputValues[input.name]}
-                          onChange={setInputValue}
+                          onChange={input.custom ? setCustomValue : setInputValue}
                           placeholder={input.label && input.label}
                           type={input.type}
                           select={input.select}
                           name={input.name}
                           inputProps={{ min: 0 }}
                         >
-                          {input.select && (
-                            input.options.map(option => {
-                              return (
-                                <MenuItem key={option.value} value={option.value}>
-                                  {option.label}
-                                </MenuItem>
-                              )
-                            })
-                          )}
                         </TextField>
                       </div>
-
                     </div>
                   ) : (
                     <FormControlLabel

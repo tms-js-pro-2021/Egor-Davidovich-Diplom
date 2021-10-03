@@ -1,12 +1,14 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
+import { connect } from 'react-redux';
 import styles from './LoginForm.module.scss';
 import Logo from '../../image/logImage.svg';
 import { Formik } from 'formik';
 import { useHistory } from 'react-router';
+import { setToken} from '../../redux/getToken/actions';
 import { api } from '../../Api';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const history = useHistory();
 
   const handleLoginClick = (values) => {
@@ -21,8 +23,8 @@ const LoginForm = () => {
         if (response.status === 200) {
           response.json().then((data) => {
             const token = data.token;
+            props.setUser(token)
             history.push('/');
-            console.log(token);
           });
         }
       });
@@ -80,4 +82,12 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+const mapStateToProps = state => ({
+  token: state.token,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setUser: token => dispatch(setToken(token)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
