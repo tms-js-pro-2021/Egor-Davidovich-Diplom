@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import CloseIcon from '@material-ui/icons/Close';
-import styles from './PopUpAdd.module.scss';
+import React, { useState } from 'react'
+import CloseIcon from '@material-ui/icons/Close'
+import styles from './PopUpAdd.module.scss'
 import {
   Button,
   Dialog,
@@ -8,7 +8,7 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-} from '@material-ui/core';
+} from '@material-ui/core'
 
 const textFieldSettings = [
   {
@@ -31,32 +31,32 @@ const textFieldSettings = [
     variant: 'outlined',
     name: 'floor',
     required: true,
-  }
-];
+  },
+]
 
 const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
   const [inputValues, setInputValues] = useState({
     description: '',
     address: '',
     floor: '',
-  });
+  })
 
   const addRoomFromList = () => {
-    handleAddRoom({ ...inputValues });
-    handleClose();
+    handleAddRoom({ ...inputValues })
+    handleClose()
     setInputValues({
       description: '',
       address: '',
       floor: '',
-    });
-  };
+    })
+  }
 
   const setInputValue = (event) => {
     setInputValues({
       ...inputValues,
       [event.target.name]: event.target.value,
-    });
-  };
+    })
+  }
 
   return (
     <Dialog
@@ -112,7 +112,7 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
         </Button>
       </DialogActions>
     </Dialog>
-  );
-};
+  )
+}
 
-export default PopUpAdd;
+export default PopUpAdd

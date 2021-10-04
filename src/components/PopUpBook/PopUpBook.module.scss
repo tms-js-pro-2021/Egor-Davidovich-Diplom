@@ -14,7 +14,7 @@
 
     }
 
- }
+  }
 
  &__content {
   display: flex;
@@ -66,36 +66,21 @@
    display: flex;
    flex-direction: column;
    align-items: center;
-   margin-bottom: 50px;
+   margin-bottom: 20px;
 
   &__title {
     margin-right: 10px;
     font-weight: bold;
   }
 
+
   &__input {
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 10px;
-  }
-
-  &__time {
     display: flex;
-    margin-top: 30px;
-    &__end {
-      margin-left: 50px;
-    }
+    margin-top: 10px;
+    align-items: center;
   }
-
 }
 
-
-  h5 {
-    display: flex;
-    margin-top: 30px;
-    justify-content: center;
-  }
 
 
 }
@@ -112,7 +97,9 @@
     }
 
     &__other {
-      font-size: 20px;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
     }
 
 }
