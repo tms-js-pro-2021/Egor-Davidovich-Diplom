@@ -1,16 +1,16 @@
-import React from 'react';
-import { useHistory } from 'react-router';
-import styles from './Header.module.scss';
-import MyConference from '../../image/myConference.svg';
-import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
+import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone'
+import MyConference from '../../image/myConference.svg'
+import styles from './Header.module.scss'
 
 const Header = () => {
-  const history = useHistory();
+  const history = useHistory()
 
   const handleLogIn = () => {
-    history.replace('/login');
-  };
+    history.replace('/login')
+  }
 
   return (
     <div className={styles.header}>
@@ -40,7 +40,7 @@ const Header = () => {
         <span className={styles.button__login__text}>LOG IN</span>
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

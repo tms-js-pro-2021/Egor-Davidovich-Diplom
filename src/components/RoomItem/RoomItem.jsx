@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
-import styles from './RoomItem.module.scss';
-import classnames from 'classnames';
-import roomImage from '../../image/room.svg';
-import PopUpDel from '../PopUpDel';
-import PopUpBook from '../PopUpBook';
+import React, { useEffect, useState } from 'react'
+import classnames from 'classnames'
+import styles from './RoomItem.module.scss'
+import roomImage from '../../image/room.svg'
+import PopUpDel from '../PopUpDel'
+import PopUpBook from '../PopUpBook'
+import PopUpBookList from '../PopUpBookList'
+import { api } from '../../Api'
+import { Button } from '@material-ui/core'
 
-const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
-  const [isShowPopupDel, setIsShowPopupDel] = useState(false);
-  const [isShowPopupBook, setIsShowPopupBook] = useState(false);
+const RoomItem = ({ handleDeleteRoom, token, events, setEvents, ...item }) => {
+  const [isShowPopupDel, setIsShowPopupDel] = useState(false)
+  const [isShowPopupBook, setIsShowPopupBook] = useState(false)
+  const [isShowPopupBookList, setIsShowPopupBookList] = useState(false)
 
   return (
     <div className={styles.room}>
@@ -19,19 +23,37 @@ const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
             <span>Address:</span>
             <span>{item.address}</span>
             <span>Floor: {item.floor}</span>
-            <span>Booked:{ }</span>
+            <Button
+              color="primary"
+              variant="contained"
+              autoFocus
+              onClick={() => setIsShowPopupBookList(true)}
+            >
+              Booked
+            </Button>
           </div>
         </div>
         <div>
-          <button onClick={() => setIsShowPopupBook(true)} className={classnames(styles.room__buttons__more, styles.room__buttons)}>
+          <button
+            onClick={() => setIsShowPopupBook(true)}
+            className={classnames(
+              styles.room__buttons__more,
+              styles.room__buttons
+            )}
+          >
             Book
           </button>
-          {token && <button
-            onClick={() => setIsShowPopupDel(true)}
-            className={classnames(styles.room__buttons__delete, styles.room__buttons)}
-          >
-            Delete room
-          </button>}
+          {token && (
+            <button
+              onClick={() => setIsShowPopupDel(true)}
+              className={classnames(
+                styles.room__buttons__delete,
+                styles.room__buttons
+              )}
+            >
+              Delete room
+            </button>
+          )}
         </div>
       </div>
       <PopUpDel
@@ -44,10 +66,18 @@ const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
         open={isShowPopupBook}
         id={item.id}
         handleClose={() => setIsShowPopupBook(false)}
+        setEvents={setEvents}
+        events={events}
+        {...item}
+      />
+      <PopUpBookList
+        open={isShowPopupBookList}
+        id={item.id}
+        handleClose={() => setIsShowPopupBookList(false)}
         {...item}
       />
     </div>
-  );
-};
+  )
+}
 
-export default RoomItem;
+export default RoomItem

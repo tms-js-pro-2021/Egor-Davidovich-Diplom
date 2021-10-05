@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
-import styles from './PopUpAdd.module.scss'
 import {
   Button,
   Dialog,
@@ -9,6 +8,7 @@ import {
   DialogTitle,
   TextField,
 } from '@material-ui/core'
+import styles from './PopUpAdd.module.scss'
 
 const textFieldSettings = [
   {

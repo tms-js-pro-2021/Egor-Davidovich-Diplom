@@ -100,6 +100,7 @@ const MainContent = (props) => {
       <RoomList
         rooms={rooms}
         events={events}
+        setEvents={setEvents}
         token={props.token.token}
         handleDeleteRoom={handleDeleteRoom}
       />

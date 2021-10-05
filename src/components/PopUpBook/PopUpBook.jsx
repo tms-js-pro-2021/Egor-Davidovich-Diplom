@@ -1,14 +1,5 @@
 import React, { useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
-import { api } from '../../Api'
-import styles from './PopUpBook.module.scss'
-import Projector from '../../image/projector.svg'
-import WebCam from '../../image/webcam.svg'
-import Catering from '../../image/catering.svg'
-import Tea from '../../image/tea.svg'
-import Water from '../../image/water.svg'
-import Coffee from '../../image/coffee.svg'
-import Board from '../../image/board.png'
 import {
   Button,
   Checkbox,
@@ -20,6 +11,15 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core'
+import { api } from '../../Api'
+import styles from './PopUpBook.module.scss'
+import Projector from '../../image/projector.svg'
+import WebCam from '../../image/webcam.svg'
+import Catering from '../../image/catering.svg'
+import Tea from '../../image/tea.svg'
+import Water from '../../image/water.svg'
+import Coffee from '../../image/coffee.svg'
+import Board from '../../image/board.png'
 
 const inputSettings = [
   {
@@ -83,7 +83,7 @@ const inputSettings = [
   },
 ]
 
-const PopUpBook = ({ open, handleClose, id, ...item }) => {
+const PopUpBook = ({ open, handleClose, events, setEvents, id, ...item }) => {
   const [inputValues, setInputValues] = useState({
     guests: '',
     startDateTime: '',
@@ -137,6 +137,7 @@ const PopUpBook = ({ open, handleClose, id, ...item }) => {
         },
       })
         .then((response) => response.json())
+        .then((response) => setEvents(response))
         .then(
           () => handleClose(),
           setInputValues({
@@ -194,7 +195,7 @@ const PopUpBook = ({ open, handleClose, id, ...item }) => {
                       type={input.type}
                       name={input.name}
                       inputProps={{ min: 0 }}
-                    ></TextField>
+                    />
                   </div>
                 </div>
               ) : (
