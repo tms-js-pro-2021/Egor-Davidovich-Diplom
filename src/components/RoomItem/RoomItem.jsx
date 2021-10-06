@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import classnames from 'classnames'
+import { Button } from '@material-ui/core'
 import styles from './RoomItem.module.scss'
 import roomImage from '../../image/room.svg'
 import PopUpDel from '../PopUpDel'
 import PopUpBook from '../PopUpBook'
 import PopUpBookList from '../PopUpBookList'
-import { api } from '../../Api'
-import { Button } from '@material-ui/core'
 
 const RoomItem = ({ handleDeleteRoom, token, events, setEvents, ...item }) => {
   const [isShowPopupDel, setIsShowPopupDel] = useState(false)
@@ -26,10 +25,9 @@ const RoomItem = ({ handleDeleteRoom, token, events, setEvents, ...item }) => {
             <Button
               color="primary"
               variant="contained"
-              autoFocus
               onClick={() => setIsShowPopupBookList(true)}
             >
-              Booked
+              Bookings
             </Button>
           </div>
         </div>

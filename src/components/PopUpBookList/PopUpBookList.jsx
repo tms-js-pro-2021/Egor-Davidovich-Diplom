@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { api } from '../../Api'
 import {
   Button,
   Dialog,
   DialogContent,
-  DialogContentText,
   DialogActions,
   DialogTitle,
 } from '@material-ui/core'
+import { api } from '../../Api'
+import styles from './PopUpBookList.module.scss'
 
 const PopUpBookList = ({ open, handleClose, ...item }) => {
   const [dates, setDates] = useState([])
@@ -28,19 +28,29 @@ const PopUpBookList = ({ open, handleClose, ...item }) => {
   }, [])
 
   const convertDateTime = (date) => {
-    return date.substr(0, 16).replace('T', ' ')
+    const convertDate = date.substr(0, 16).replace('T', ' ')
+    return convertDate
+  }
+
+  const getCheckedFeatures = (obj) => {
+    const features = Object.keys(obj).filter((key) => obj[key] === true)
+    return features.length ? features.join(', ') : 'NO FEATURES'
   }
 
   return (
     <Dialog open={open} onClose={handleClose}>
-      <DialogTitle>BOOKS</DialogTitle>
+      <DialogTitle className={styles.popup__title}>BOOKINGS</DialogTitle>
       <DialogContent>
         {dates.map((item) => {
           return (
-            <ul>
-              <li>START - {convertDateTime(item.startDateTime)}</li>
-              <li>END - {convertDateTime(item.endDateTime)}</li>
-            </ul>
+            <div>
+              Meeting
+              <ul>
+                <li>START - {convertDateTime(item.startDateTime)}</li>
+                <li>END - {convertDateTime(item.endDateTime)}</li>
+                <li>Features - {getCheckedFeatures(item.stuff)}</li>
+              </ul>
+            </div>
           )
         })}
       </DialogContent>
