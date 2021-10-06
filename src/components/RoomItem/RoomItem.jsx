@@ -11,7 +11,8 @@ const RoomItem = ({ handleDeleteRoom, token, events, setEvents, ...item }) => {
   const [isShowPopupDel, setIsShowPopupDel] = useState(false)
   const [isShowPopupBook, setIsShowPopupBook] = useState(false)
   const [isShowPopupBookList, setIsShowPopupBookList] = useState(false)
-
+  const [dates, setDates] = useState([])
+  console.log(dates)
   return (
     <div className={styles.room}>
       <span className={styles.room__title}>{item.description}</span>
@@ -66,11 +67,15 @@ const RoomItem = ({ handleDeleteRoom, token, events, setEvents, ...item }) => {
         handleClose={() => setIsShowPopupBook(false)}
         setEvents={setEvents}
         events={events}
+        setDates={setDates}
+        dates={dates}
         {...item}
       />
       <PopUpBookList
         open={isShowPopupBookList}
         id={item.id}
+        setDates={setDates}
+        dates={dates}
         handleClose={() => setIsShowPopupBookList(false)}
         {...item}
       />

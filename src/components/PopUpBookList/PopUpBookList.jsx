@@ -9,9 +9,7 @@ import {
 import { api } from '../../Api'
 import styles from './PopUpBookList.module.scss'
 
-const PopUpBookList = ({ open, handleClose, ...item }) => {
-  const [dates, setDates] = useState([])
-
+const PopUpBookList = ({ open, handleClose, dates, setDates, ...item }) => {
   useEffect(() => {
     try {
       fetch(`${api.bookRoom}?meetRoom=${item.id}`, {
@@ -27,15 +25,12 @@ const PopUpBookList = ({ open, handleClose, ...item }) => {
     }
   }, [])
 
-  const convertDateTime = (date) => {
-    const convertDate = date.substr(0, 16).replace('T', ' ')
-    return convertDate
-  }
+  const convertDateTime = (date) => date.substr(0, 16).replace('T', ' ')
 
-  const getCheckedFeatures = (obj) => {
-    const features = Object.keys(obj).filter((key) => obj[key] === true)
-    return features.length ? features.join(', ') : 'NO FEATURES'
-  }
+  const getCheckedFeatures = (obj) =>
+    Object.keys(obj)
+      .filter((key) => obj[key])
+      .join(', ') || 'No features'
 
   return (
     <Dialog open={open} onClose={handleClose}>

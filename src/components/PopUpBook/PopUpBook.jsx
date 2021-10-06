@@ -83,7 +83,16 @@ const inputSettings = [
   },
 ]
 
-const PopUpBook = ({ open, handleClose, events, setEvents, id, ...item }) => {
+const PopUpBook = ({
+  open,
+  handleClose,
+  events,
+  setEvents,
+  setDates,
+  dates,
+  id,
+  ...item
+}) => {
   const [inputValues, setInputValues] = useState({
     guests: '',
     startDateTime: '',
@@ -138,6 +147,7 @@ const PopUpBook = ({ open, handleClose, events, setEvents, id, ...item }) => {
       })
         .then((response) => response.json())
         .then((response) => setEvents(response))
+        .then((response) => setDates(response))
         .then(
           () => handleClose(),
           setInputValues({
