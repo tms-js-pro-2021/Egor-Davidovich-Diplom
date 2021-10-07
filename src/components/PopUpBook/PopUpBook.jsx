@@ -8,6 +8,7 @@ import {
   DialogContent,
   DialogTitle,
   FormControlLabel,
+  FormGroup,
   TextField,
   Typography,
 } from '@material-ui/core'
@@ -38,7 +39,9 @@ const inputSettings = [
     label: 'Guests number',
     name: 'guests',
   },
+]
 
+const checkboxSettings = [
   {
     type: 'checkbox',
     name: 'projector',
@@ -191,24 +194,28 @@ const PopUpBook = ({
         </div>
         {inputSettings.map((input) => {
           return (
-            <div className={styles.popup__booking} key={input.name}>
-              {input.type !== 'checkbox' ? (
-                <div className={styles.popup__booking__input}>
-                  <div className={styles.popup__booking__title}>
-                    {input.text}
-                  </div>
-                  <div>
-                    <TextField
-                      value={inputValues[input.name]}
-                      onChange={setInputValue}
-                      placeholder={input.label && input.label}
-                      type={input.type}
-                      name={input.name}
-                      inputProps={{ min: 0 }}
-                    />
-                  </div>
-                </div>
-              ) : (
+            <div className={styles.popup__booking__input}>
+              <div className={styles.popup__booking__title}>{input.text}</div>
+              <div>
+                <TextField
+                  value={inputValues[input.name]}
+                  onChange={setInputValue}
+                  placeholder={input.label && input.label}
+                  type={input.type}
+                  name={input.name}
+                  inputProps={{ min: 0 }}
+                />
+              </div>
+            </div>
+          )
+        })}
+        <Typography className={styles.popup__features} variant="h6">
+          Choose extra features:
+        </Typography>
+        <div className={styles.popup__container__checkboxes}>
+          <FormGroup className={styles.popup__checkbox}>
+            {checkboxSettings.map((input) => {
+              return (
                 <FormControlLabel
                   control={
                     <Checkbox
@@ -224,15 +231,10 @@ const PopUpBook = ({
                     </React.Fragment>
                   }
                 />
-              )}
-            </div>
-          )
-        })}
-        {/* <Typography className={styles.popup__features} variant="h5">
-          Choose extra features
-        </Typography>
-        <div className={styles.popup__container__checkboxes}>
-          <FormGroup className={styles.popup__checkbox}> */}
+              )
+            })}
+          </FormGroup>
+        </div>
       </DialogContent>
       <DialogActions>
         <Button

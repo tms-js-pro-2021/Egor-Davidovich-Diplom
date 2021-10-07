@@ -1,6 +1,5 @@
 import React from 'react'
-import { useHistory } from 'react-router'
-import { Link } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone'
 import MyConference from '../../image/myConference.svg'
 import styles from './Header.module.scss'

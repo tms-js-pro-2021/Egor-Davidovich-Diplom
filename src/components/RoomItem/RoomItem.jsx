@@ -26,6 +26,7 @@ const RoomItem = ({ handleDeleteRoom, token, events, setEvents, ...item }) => {
             <Button
               color="primary"
               variant="contained"
+              size="large"
               onClick={() => setIsShowPopupBookList(true)}
             >
               Bookings
