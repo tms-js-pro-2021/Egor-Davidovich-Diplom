@@ -7,8 +7,12 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  FormControl,
   FormControlLabel,
   FormGroup,
+  FormLabel,
+  Radio,
+  RadioGroup,
   TextField,
   Typography,
 } from '@material-ui/core'
@@ -47,42 +51,76 @@ const checkboxSettings = [
     name: 'projector',
     src: Projector,
     text: 'Projector',
+    color: 'primary',
   },
   {
     type: 'checkbox',
     name: 'webCam',
     src: WebCam,
     text: 'Web Camera',
+    color: 'primary',
   },
   {
     type: 'checkbox',
     name: 'board',
     src: Board,
     text: 'Board',
+    color: 'primary',
   },
   {
     type: 'checkbox',
     name: 'catering',
     src: Catering,
     text: 'Catering',
+    color: 'primary',
   },
   {
     type: 'checkbox',
     name: 'coffee',
     src: Coffee,
     text: 'Coffee',
+    color: 'primary',
   },
   {
     type: 'checkbox',
     name: 'tea',
     src: Tea,
     text: 'Tea',
+    color: 'primary',
   },
   {
     type: 'checkbox',
     name: 'water',
     src: Water,
     text: 'Water',
+    color: 'primary',
+  },
+]
+
+const radioSettings = [
+  {
+    type: 'radio',
+    value: 'Interview',
+    label: 'Interview',
+    color: 'primary',
+  },
+  {
+    type: 'radio',
+    value: 'Presentation',
+    label: 'Presentation',
+    color: 'primary',
+  },
+  {
+    type: 'radio',
+    value: 'Meeting',
+    label: 'Meeting',
+    color: 'primary',
+  },
+  {
+    type: 'radio',
+    value: 'Webinar',
+    label: 'Webinar',
+    color: 'primary',
   },
 ]
 
@@ -115,6 +153,12 @@ const PopUpBook = ({
     },
   })
 
+  const [radioValues, setRadioValues] = useState({
+    custoFields: {
+      eventType: false,
+    },
+  })
+
   const setInputValue = (event) => {
     setInputValues({
       ...inputValues,
@@ -131,8 +175,18 @@ const PopUpBook = ({
     })
   }
 
+  const setRadioValue = (event) => {
+    setRadioValues({
+      custoFields: {
+        ...radioValues.custoFields,
+        [event.target.name]: event.target.checked,
+      },
+    })
+  }
+
   const handleBookRoom = () => {
     const updatedState = {
+      ...radioValues,
       ...checkboxValues,
       ...inputValues,
       startDateTime: Date.parse(inputValues.startDateTime),
@@ -209,25 +263,41 @@ const PopUpBook = ({
             </div>
           )
         })}
+        <FormControl component="fieldset">
+          <FormLabel component="legend">EVENT TYPE:</FormLabel>
+          <RadioGroup row>
+            {radioSettings.map((radio) => {
+              return (
+                <FormControlLabel
+                  value={radio.value}
+                  control={
+                    <Radio color={radio.color} onChange={setRadioValue} />
+                  }
+                  label={radio.label}
+                />
+              )
+            })}
+          </RadioGroup>
+        </FormControl>
         <Typography className={styles.popup__features} variant="h6">
           Choose extra features:
         </Typography>
         <div className={styles.popup__container__checkboxes}>
           <FormGroup className={styles.popup__checkbox}>
-            {checkboxSettings.map((input) => {
+            {checkboxSettings.map((checkbox) => {
               return (
                 <FormControlLabel
                   control={
                     <Checkbox
                       onChange={setCheckBoxValue}
-                      color="primary"
-                      name={input.name}
+                      color={checkbox.color}
+                      name={checkbox.name}
                     />
                   }
                   label={
                     <React.Fragment>
-                      <img className={styles.popup__img} src={input.src} />
-                      {input.text}
+                      <img className={styles.popup__img} src={checkbox.src} />
+                      {checkbox.text}
                     </React.Fragment>
                   }
                 />

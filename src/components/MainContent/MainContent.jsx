@@ -81,7 +81,7 @@ const MainContent = (props) => {
       console.log('SERVER ERROR')
     }
   }
-
+  console.log(events)
   return (
     <div className={styles.main}>
       {props.token.token && (

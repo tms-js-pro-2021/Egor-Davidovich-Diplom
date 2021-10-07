@@ -12,7 +12,7 @@ const RoomItem = ({ handleDeleteRoom, token, events, setEvents, ...item }) => {
   const [isShowPopupBook, setIsShowPopupBook] = useState(false)
   const [isShowPopupBookList, setIsShowPopupBookList] = useState(false)
   const [dates, setDates] = useState([])
-  console.log(dates)
+
   return (
     <div className={styles.room}>
       <span className={styles.room__title}>{item.description}</span>

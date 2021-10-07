@@ -4,7 +4,11 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
+  extends: [
+    'airbnb',
+    'plugin:prettier/recommended',
+    'plugin:eslint-comments/recommended',
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -12,6 +16,6 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react'],
-  rules: {},
+  plugins: ['react', 'react-hooks', 'jsx-a11y'],
+  rules: { 'react/prop-types': 0, 'react/jsx-props-no-spreading': 0 },
 }
