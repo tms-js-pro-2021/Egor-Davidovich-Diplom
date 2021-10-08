@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import {
   Button,
   Dialog,
@@ -27,6 +27,10 @@ const PopUpBookList = ({ open, handleClose, dates, setDates, ...item }) => {
 
   const convertDateTime = (date) => date.substr(0, 16).replace('T', ' ')
 
+  const sortedEvents = dates.sort((a, b) =>
+    a.startDateTime > b.startDateTime ? 1 : -1
+  )
+
   const getCheckedFeatures = (obj) =>
     Object.keys(obj)
       .filter((key) => obj[key])
@@ -36,15 +40,17 @@ const PopUpBookList = ({ open, handleClose, dates, setDates, ...item }) => {
     <Dialog open={open} onClose={handleClose}>
       <DialogTitle className={styles.popup__title}>BOOKINGS</DialogTitle>
       <DialogContent>
-        {dates.map((item) => {
+        {sortedEvents.map((event) => {
           return (
-            <div key={item.id}>
-              <span>Meeting</span>
+            <div className={styles.popup__info} key={event.id}>
+              <span className={styles.popup__info__type}>
+                {event.customFields?.eventType}
+              </span>
               <ul>
-                <li>START - {convertDateTime(item.startDateTime)}</li>
-                <li>END - {convertDateTime(item.endDateTime)}</li>
-                <li>Features - {getCheckedFeatures(item.stuff)}</li>
-                <li>Guests - {item.guestsCount}</li>
+                <li>START - {convertDateTime(event.startDateTime)}</li>
+                <li>END - {convertDateTime(event.endDateTime)}</li>
+                <li>Guests - {event.guestsCount}</li>
+                <li>Features - {getCheckedFeatures(event.stuff)}</li>
               </ul>
             </div>
           )

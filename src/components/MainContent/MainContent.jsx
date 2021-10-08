@@ -9,7 +9,6 @@ import { api } from '../../Api'
 const MainContent = (props) => {
   const [isShowPopupAdd, setIsShowPopupAdd] = useState(false)
   const [rooms, setRooms] = useState([])
-  const [events, setEvents] = useState([])
 
   useEffect(() => {
     try {
@@ -21,21 +20,6 @@ const MainContent = (props) => {
       })
         .then((data) => data.json())
         .then((data) => setRooms(data))
-    } catch (error) {
-      console.log('SERVER ERROR')
-    }
-  }, [])
-
-  useEffect(() => {
-    try {
-      fetch(`${api.bookRoom}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-        .then((data) => data.json())
-        .then((data) => setEvents(data))
     } catch (error) {
       console.log('SERVER ERROR')
     }
@@ -81,7 +65,7 @@ const MainContent = (props) => {
       console.log('SERVER ERROR')
     }
   }
-  console.log(events)
+
   return (
     <div className={styles.main}>
       {props.token.token && (
@@ -99,8 +83,6 @@ const MainContent = (props) => {
       )}
       <RoomList
         rooms={rooms}
-        events={events}
-        setEvents={setEvents}
         token={props.token.token}
         handleDeleteRoom={handleDeleteRoom}
       />

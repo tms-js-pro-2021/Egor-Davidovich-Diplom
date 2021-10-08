@@ -1,10 +1,25 @@
-.popup__title   {
+.popup {
+  font-family: Montserrat;
+  &__title {
     h2 {
       font-family: Montserrat;
       font-weight: bold;
       font-size: 48px;
       display: flex;
       justify-content: center;
-
     }
+  }
+
+  &__info {
+    margin-top: 10px;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid black;
+    }
+
+    &__type {
+      font-size: 24px;
+      font-weight: bold;
+    }
+  }
 }

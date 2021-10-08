@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 import {
@@ -139,6 +140,9 @@ const PopUpBook = ({
     startDateTime: '',
     endDateTime: '',
     meetRoom: id,
+    customFields: {
+      eventType: '',
+    },
   })
 
   const [checkboxValues, setCheckBoxValues] = useState({
@@ -153,17 +157,20 @@ const PopUpBook = ({
     },
   })
 
-  const [radioValues, setRadioValues] = useState({
-    customFields: {
-      eventType: '',
-    },
-  })
-
   const setInputValue = (event) => {
-    setInputValues({
-      ...inputValues,
-      [event.target.name]: event.target.value,
-    })
+    if (event.target.type === 'radio') {
+      setInputValues({
+        ...inputValues,
+        customFields: {
+          eventType: event.target.value,
+        },
+      })
+    } else {
+      setInputValues({
+        ...inputValues,
+        [event.target.name]: event.target.value,
+      })
+    }
   }
 
   const setCheckBoxValue = (event) => {
@@ -175,17 +182,8 @@ const PopUpBook = ({
     })
   }
 
-  const setRadioValue = (event) => {
-    setRadioValues({
-      customFields: {
-        [event.target.name]: event.target.value,
-      },
-    })
-  }
-
   const handleBookRoom = () => {
     const updatedState = {
-      ...radioValues,
       ...checkboxValues,
       ...inputValues,
       startDateTime: Date.parse(inputValues.startDateTime),
@@ -202,21 +200,19 @@ const PopUpBook = ({
         },
       })
         .then((response) => response.json())
-        .then((response) => setEvents(response))
-        .then((response) => setDates(response))
-        .then(
-          () => handleClose(),
-          setInputValues({
-            guestsCount: '',
-            startDateTime: '',
-            endDateTime: '',
-          })
-        )
+        .then((response) => {
+          setDates((prev) => [...prev, response]),
+            handleClose(),
+            setInputValues({
+              guestsCount: '',
+              startDateTime: '',
+              endDateTime: '',
+            })
+        })
     } catch (error) {
       console.log('SERVER ERROR')
     }
   }
-
   return (
     <Dialog className={styles.popup} open={open} onClose={handleClose}>
       <Button
@@ -238,9 +234,9 @@ const PopUpBook = ({
           </span>
           <span className={styles.room__info__other}>Floor: {item.floor}</span>
         </div>
-        {inputSettings.map((input) => {
+        {inputSettings.map((input, index) => {
           return (
-            <div className={styles.popup__booking__input}>
+            <div className={styles.popup__booking__input} key={index}>
               <div className={styles.popup__booking__title}>{input.text}</div>
               <div>
                 <TextField
@@ -258,12 +254,13 @@ const PopUpBook = ({
         <FormControl component="fieldset">
           <FormLabel component="legend">EVENT TYPE:</FormLabel>
           <RadioGroup row>
-            {radioSettings.map((radio) => {
+            {radioSettings.map((radio, index) => {
               return (
                 <FormControlLabel
                   value={radio.value}
+                  key={index}
                   control={
-                    <Radio color={radio.color} onChange={setRadioValue} />
+                    <Radio color={radio.color} onChange={setInputValue} />
                   }
                   label={radio.label}
                 />
@@ -276,9 +273,10 @@ const PopUpBook = ({
         </Typography>
         <div className={styles.popup__container__checkboxes}>
           <FormGroup className={styles.popup__checkbox}>
-            {checkboxSettings.map((checkbox) => {
+            {checkboxSettings.map((checkbox, index) => {
               return (
                 <FormControlLabel
+                  key={index}
                   control={
                     <Checkbox
                       onChange={setCheckBoxValue}
@@ -287,10 +285,14 @@ const PopUpBook = ({
                     />
                   }
                   label={
-                    <React.Fragment>
-                      <img className={styles.popup__img} src={checkbox.src} />
+                    <>
+                      <img
+                        className={styles.popup__img}
+                        src={checkbox.src}
+                        alt=""
+                      />
                       {checkbox.text}
-                    </React.Fragment>
+                    </>
                   }
                 />
               )

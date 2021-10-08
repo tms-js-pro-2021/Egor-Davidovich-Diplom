@@ -1,7 +1,7 @@
 .popup {
   display: flex;
   justify-content: center;
-  
+
   h6 {
     font-family: Montserrat;
     font-weight: bold;
@@ -20,7 +20,6 @@
   fieldset {
     align-items: center;
   }
-
   legend {
     font-family: Montserrat;
     font-weight: bold;
@@ -28,92 +27,79 @@
     color: #000000;
     margin-bottom: 10px;
   }
-
- &__content {
-  display: flex;
-  flex-direction: column;
- }
-
- &__btnClose {
-  align-self: flex-end;
-  width: 40px;
-  height: 40px;
-  
- }
-
- &__btn {
-   span {
-     font-size: 16px;
-   }
-
- }
-
- &__img {
-   width: 40px;
-   height: 40px;
-   margin-right: 10px;
- }
-
- &__container__checkboxes {
-   margin-top: 20px;
-   
-   div {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 15px;
-   }
- }
- 
- &__checkbox {
-   span {
+  &__content {
     display: flex;
-    align-items: center; 
+    flex-direction: column;
   }
- }
 
+  &__btnClose {
+    align-self: flex-end;
+    width: 40px;
+    height: 40px;
+  }
 
- &__booking {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   margin-bottom: 20px;
+  &__btn {
+    span {
+      font-size: 16px;
+    }
+  }
 
-  &__title {
+  &__img {
+    width: 40px;
+    height: 40px;
     margin-right: 10px;
-    font-weight: bold;
   }
 
+  &__container__checkboxes {
+    margin-top: 20px;
 
-  &__input {
+    div {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 15px;
+    }
+  }
+
+  &__checkbox {
+    span {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__booking {
     display: flex;
-    margin-bottom: 25px;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    margin-bottom: 20px;
+
+    &__title {
+      margin-right: 10px;
+      font-weight: bold;
+    }
+
+    &__input {
+      display: flex;
+      margin-bottom: 25px;
+      align-items: center;
+      justify-content: center;
+    }
   }
-}
-
-
-
 }
 
 .room__info {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  text-align: center;
 
-    &__title {
-      font-size: 24px;
-      font-weight: bold;
-    }
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+  }
 
-    &__other {
-      font-size: 16px;
-      font-weight: bold;
-    }
-
+  &__other {
+    font-size: 16px;
+    font-weight: bold;
+  }
 }
-
-
-
-

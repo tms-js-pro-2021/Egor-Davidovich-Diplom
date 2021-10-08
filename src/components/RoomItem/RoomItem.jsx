@@ -7,7 +7,7 @@ import PopUpDel from '../PopUpDel'
 import PopUpBook from '../PopUpBook'
 import PopUpBookList from '../PopUpBookList'
 
-const RoomItem = ({ handleDeleteRoom, token, events, setEvents, ...item }) => {
+const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
   const [isShowPopupDel, setIsShowPopupDel] = useState(false)
   const [isShowPopupBook, setIsShowPopupBook] = useState(false)
   const [isShowPopupBookList, setIsShowPopupBookList] = useState(false)
@@ -66,8 +66,6 @@ const RoomItem = ({ handleDeleteRoom, token, events, setEvents, ...item }) => {
         open={isShowPopupBook}
         id={item.id}
         handleClose={() => setIsShowPopupBook(false)}
-        setEvents={setEvents}
-        events={events}
         setDates={setDates}
         dates={dates}
         {...item}
