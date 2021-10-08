@@ -41,7 +41,7 @@ const inputSettings = [
     text: 'Guests:',
     type: 'number',
     label: 'Guests number',
-    name: 'guests',
+    name: 'guestsCount',
   },
 ]
 
@@ -135,7 +135,7 @@ const PopUpBook = ({
   ...item
 }) => {
   const [inputValues, setInputValues] = useState({
-    guests: '',
+    guestsCount: '',
     startDateTime: '',
     endDateTime: '',
     meetRoom: id,
@@ -154,8 +154,8 @@ const PopUpBook = ({
   })
 
   const [radioValues, setRadioValues] = useState({
-    custoFields: {
-      eventType: false,
+    customFields: {
+      eventType: '',
     },
   })
 
@@ -177,9 +177,8 @@ const PopUpBook = ({
 
   const setRadioValue = (event) => {
     setRadioValues({
-      custoFields: {
-        ...radioValues.custoFields,
-        [event.target.name]: event.target.checked,
+      customFields: {
+        [event.target.name]: event.target.value,
       },
     })
   }
@@ -208,7 +207,7 @@ const PopUpBook = ({
         .then(
           () => handleClose(),
           setInputValues({
-            guests: '',
+            guestsCount: '',
             startDateTime: '',
             endDateTime: '',
           })
@@ -219,14 +218,7 @@ const PopUpBook = ({
   }
 
   return (
-    <Dialog
-      className={styles.popup}
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="scroll-dialog-title"
-      aria-describedby="scroll-dialog-description"
-      overflow="scroll"
-    >
+    <Dialog className={styles.popup} open={open} onClose={handleClose}>
       <Button
         className={styles.popup__btnClose}
         onClick={handleClose}

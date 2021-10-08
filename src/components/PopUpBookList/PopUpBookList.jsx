@@ -38,12 +38,13 @@ const PopUpBookList = ({ open, handleClose, dates, setDates, ...item }) => {
       <DialogContent>
         {dates.map((item) => {
           return (
-            <div>
-              Meeting
+            <div key={item.id}>
+              <span>Meeting</span>
               <ul>
                 <li>START - {convertDateTime(item.startDateTime)}</li>
                 <li>END - {convertDateTime(item.endDateTime)}</li>
                 <li>Features - {getCheckedFeatures(item.stuff)}</li>
+                <li>Guests - {item.guestsCount}</li>
               </ul>
             </div>
           )
