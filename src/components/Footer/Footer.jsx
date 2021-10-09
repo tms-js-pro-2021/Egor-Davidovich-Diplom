@@ -22,7 +22,7 @@ const Footer = () => {
           CONTACT US
         </a>
       </nav>
-      <p> © 2021 Copyright TMS</p>
+      <p className={styles.footer__copyright}> © 2021 Copyright TMS</p>
       <div>
         <a href="#" className={styles.social__links}>
           <FacebookIcon fontSize="large" />

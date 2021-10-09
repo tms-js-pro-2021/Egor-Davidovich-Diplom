@@ -32,3 +32,12 @@
   color: #ffffff; 
 }
 
+@media screen and (max-width: 320px) {
+  .nav__link {
+    font-size: 8px;
+  }
+  .footer__copyright{
+    font-size: 8px;
+  }
+
+}

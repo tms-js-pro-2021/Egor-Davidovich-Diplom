@@ -26,10 +26,22 @@
 }
 
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1080px) {
   .button__add { 
       justify-content: center;
       width: auto;
 
   }
 }
+
+@media screen and (max-width: 768px) {
+  .button__add__text { 
+    font-size: 12px;
+
+  }
+
+  .room__description__bookings {
+    font-size: 8px;
+  }
+}
+

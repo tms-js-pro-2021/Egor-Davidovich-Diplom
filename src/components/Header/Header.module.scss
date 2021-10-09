@@ -1,6 +1,6 @@
 .header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 0 20px;
     align-items: center;
     background: rgba(106, 128, 240, 0.93) 0%;
@@ -57,7 +57,7 @@
     font-size: 24px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1080px) {
 
     .header {
         justify-content: space-between;
@@ -68,17 +68,26 @@
         padding: 15px 0 0 0;
       }
 
-    .nav {
-        display: none;
-    }
-
+      .nav__link {
+        font-size: 18px
+      }
       .button__login__text {
         display: none;
     }
 
+}
+
+@media screen and (max-width: 768px) {
+    .nav {
+        display: none;
+    }
     .button__login {
         position: absolute;
-        top: 5px;
-        right: 10px;
+        right: 0;
+        top: 0;
     }
+
+    .header__logo {
+        padding: 40px 0 0 0;
+      }
 }
