@@ -67,3 +67,39 @@
   width: 350px;
   height: 250px;
 }
+
+
+@media screen and (max-width: 768px) {
+  .room__title {
+    margin-left: 0;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+ 
+  .room__image {
+    display: none;
+  }
+
+  .room__description {
+    font-size: 16px;
+    width: 420px;
+  }
+
+  .room__buttons {
+    width: 120px;
+    height: 50px;
+    font-size: 12px;
+ }
+
+  .room__buttons__more {
+     margin-right: 0;
+     margin-bottom: 5px;
+  }
+  
+  .room__action__buttons {
+    display: flex;
+    flex-direction: column;
+
+  }
+}
+

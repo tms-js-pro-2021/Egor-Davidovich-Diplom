@@ -33,7 +33,7 @@ const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
             </Button>
           </div>
         </div>
-        <div>
+        <div className={styles.room__action__buttons}>
           <button
             onClick={() => setIsShowPopupBook(true)}
             className={classnames(

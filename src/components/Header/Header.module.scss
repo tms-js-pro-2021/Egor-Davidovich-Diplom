@@ -11,7 +11,8 @@
 }
 
 .header__logo {
-    width: 490px;
+    width: 100%;
+    max-width: 490px;
     height: 70px;
     padding: 30px 0;
   }
@@ -56,3 +57,28 @@
     font-size: 24px;
 }
 
+@media screen and (max-width: 768px) {
+
+    .header {
+        justify-content: space-between;
+
+    }
+
+    .header__logo {
+        padding: 15px 0 0 0;
+      }
+
+    .nav {
+        display: none;
+    }
+
+      .button__login__text {
+        display: none;
+    }
+
+    .button__login {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+    }
+}
