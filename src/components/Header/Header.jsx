@@ -3,6 +3,7 @@ import { useHistory, Link } from 'react-router-dom'
 import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone'
 import MyConference from '../../image/myConference.svg'
 import styles from './Header.module.scss'
+import NavMenu from '../NavMenu'
 
 const Header = () => {
   const history = useHistory()
@@ -30,6 +31,7 @@ const Header = () => {
           CONTACT US
         </a>
       </nav>
+      <NavMenu handleLogIn={handleLogIn}/>
       <button onClick={handleLogIn} className={styles.button__login}>
         <ExitToAppTwoToneIcon
           style={{
