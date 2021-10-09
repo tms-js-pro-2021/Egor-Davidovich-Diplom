@@ -123,6 +123,7 @@
   .room__description {
     font-size: 8px;
     width: 100px;
+    margin-left: 5px;
   }
 
   .room__title {
@@ -132,12 +133,13 @@
 
   .room__buttons {
     width: 70px;
-    height: 30px;
+    height: 20px;
     font-size: 8px;
  }
 
  .info__block {
     justify-content: space-between;
+    align-items: flex-start;
 
   }
 
