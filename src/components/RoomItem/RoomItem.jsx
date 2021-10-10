@@ -7,6 +7,8 @@ import PopUpDel from '../PopUpDel'
 import PopUpBook from '../PopUpBook'
 import PopUpBookList from '../PopUpBookList'
 
+
+
 const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
   const [isShowPopupDel, setIsShowPopupDel] = useState(false)
   const [isShowPopupBook, setIsShowPopupBook] = useState(false)
@@ -14,6 +16,7 @@ const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
   const [dates, setDates] = useState([])
 
   return (
+
     <div className={styles.room}>
       <span className={styles.room__title}>{item.description}</span>
       <div className={styles.info__block}>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useHistory, Link } from 'react-router-dom'
+import MediaQuery from 'react-responsive'
 import ExitToAppTwoToneIcon from '@material-ui/icons/ExitToAppTwoTone'
 import MyConference from '../../image/myConference.svg'
 import styles from './Header.module.scss'
@@ -31,7 +32,9 @@ const Header = () => {
           CONTACT US
         </a>
       </nav>
-      <NavMenu handleLogIn={handleLogIn}/>
+      <MediaQuery maxWidth={768}>
+        <NavMenu handleLogIn={handleLogIn} />
+      </MediaQuery>
       <button onClick={handleLogIn} className={styles.button__login}>
         <ExitToAppTwoToneIcon
           style={{
