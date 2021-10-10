@@ -68,6 +68,10 @@
       margin-bottom: 10px;
       font-size: 0.3rem;
       }
+
+    label {
+      font-size: 0.5rem;
+    }
     }
 
 
@@ -76,4 +80,24 @@
     height: 30px;
   }
 
+}
+
+@media screen and (max-width: 380px) {
+  .popup__title {
+    h2 {
+      font-size: 18px;
+    }
+  }
+
+  .popup__btnClose {
+    width: 25px;
+    height: 25px;
+  }
+
+  .popup__input {
+    div {
+      margin-bottom: 10px;
+      font-size: 0.3rem;
+      }
+    }
 }
