@@ -37,7 +37,7 @@ const PopUpBookList = ({ open, handleClose, dates, setDates, ...item }) => {
       .join(', ') || 'No features'
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={handleClose} className={styles.popup}>
       <DialogTitle className={styles.popup__title}>BOOKINGS</DialogTitle>
       <DialogContent>
         {sortedEvents.map((event) => {

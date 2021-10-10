@@ -202,12 +202,7 @@ const PopUpBook = ({
         .then((response) => response.json())
         .then((response) => {
           setDates((prev) => [...prev, response]),
-            handleClose(),
-            setInputValues({
-              guestsCount: '',
-              startDateTime: '',
-              endDateTime: '',
-            })
+            handleClose()
         })
     } catch (error) {
       console.log('SERVER ERROR')

@@ -25,6 +25,7 @@ const LoginForm = (props) => {
           response.json().then((data) => {
             const token = data.token
             props.setUser(token)
+            window.sessionStorage.token = token;
             history.push('/')
           })
         }

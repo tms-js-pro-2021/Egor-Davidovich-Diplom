@@ -23,3 +23,64 @@
     }
   }
 }
+
+@media screen and (max-width: 1080px) {
+  .popup__title {
+    h2 {
+      padding: 0;
+    }
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  .popup__title {
+    h2 {
+      font-size: 24px;
+    }
+  }
+
+  .popup__btn {
+    span {
+      font-size: 8px;
+    }
+  }
+
+  .popup__input {
+    div {
+      margin-bottom: 10px;
+      font-size: 0.3rem;
+      }
+
+    label {
+      font-size: 0.5rem;
+    }
+    }
+
+
+  .popup__btnClose {
+    width: 30px;
+    height: 30px;
+  }
+
+}
+
+@media screen and (max-width: 380px) {
+  .popup__title {
+    h2 {
+      font-size: 18px;
+    }
+  }
+
+  .popup__btnClose {
+    width: 25px;
+    height: 25px;
+  }
+
+  .popup__input {
+    div {
+      margin-bottom: 10px;
+      font-size: 0.3rem;
+      }
+    }
+}
