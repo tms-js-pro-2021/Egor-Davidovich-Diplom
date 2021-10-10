@@ -27,6 +27,7 @@ const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
             <span>{item.address}</span>
             <span>Floor: {item.floor}</span>
             <Button
+              className={styles.room__btn__bookings}
               color="primary"
               variant="contained"
               size="large"
