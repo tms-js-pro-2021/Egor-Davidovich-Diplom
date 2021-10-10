@@ -19,12 +19,16 @@ import {Button, Menu, MenuItem } from '@material-ui/core';
         id="demo-positioned-button"
         aria-controls="demo-positioned-menu"
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
+        aria-expanded={open ? 'true' : undefined}   
         onClick={handleClick}
-        color="primary"
-        variant="contained"
+        style={{
+          fontSize: '1.5rem',
+          color: 'white',
+          justifyContent: 'flex-end'
+        }}
+
       >
-        Menu
+        &#xFE19;
       </Button>
       <Menu
         id="demo-positioned-menu"
