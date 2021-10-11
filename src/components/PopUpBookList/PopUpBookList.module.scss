@@ -30,7 +30,6 @@
       padding: 0;
     }
   }
-
 }
 
 @media screen and (max-width: 768px) {
@@ -50,19 +49,17 @@
     div {
       margin-bottom: 10px;
       font-size: 0.3rem;
-      }
+    }
 
     label {
       font-size: 0.5rem;
     }
-    }
-
+  }
 
   .popup__btnClose {
     width: 30px;
     height: 30px;
   }
-
 }
 
 @media screen and (max-width: 380px) {
@@ -81,6 +78,6 @@
     div {
       margin-bottom: 10px;
       font-size: 0.3rem;
-      }
     }
+  }
 }

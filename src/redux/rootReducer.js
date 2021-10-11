@@ -1,8 +1,16 @@
-import { combineReducers } from 'redux';
-import userStore from './getToken/reducer';
+import { combineReducers } from 'redux'
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+import userStore from './getToken/reducer'
 
 const rootReducer = combineReducers({
   token: userStore,
-});
+})
 
-export default rootReducer;
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['token'],
+}
+
+export default persistReducer(persistConfig, rootReducer)

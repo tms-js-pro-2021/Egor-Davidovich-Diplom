@@ -8,7 +8,7 @@
     "test:watch": "jest --watch",
     "start": "webpack serve --mode development",
     "build": "webpack build --mode production",
-    "lint": "eslint ./src/*",
+    "lint": "eslint --ext .js --ext .jsx .",
     "prettier": "prettier"
   },
   "repository": {
@@ -39,6 +39,7 @@
     "reactjs-popup": "^2.0.5",
     "redux": "^4.1.1",
     "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
     "style-loader": "^3.2.1",
     "yup": "^0.32.9"
   },
