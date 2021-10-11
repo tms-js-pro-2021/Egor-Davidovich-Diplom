@@ -25,7 +25,7 @@ const LoginForm = (props) => {
           response.json().then((data) => {
             const token = data.token
             props.setUser(token)
-            window.sessionStorage.token = token;
+            window.sessionStorage.token = token
             history.push('/')
           })
         }
@@ -38,7 +38,7 @@ const LoginForm = (props) => {
   return (
     <div className={styles.form__container}>
       <h1 className={styles.title}>MyConference</h1>
-      <img className={styles.logo} src={Logo} />
+      <img className={styles.logo} src={Logo} alt="logo" />
       <Formik
         initialValues={{ email: '', password: '' }}
         validate={(values) => {
