@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import CloseIcon from '@material-ui/icons/Close'
-import { Formik } from 'formik'
+import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 
 import {
@@ -38,7 +38,7 @@ const textFieldSettings = [
 ]
 
 const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
-  const validate = Yup.object({
+  const validate = Yup.object().shape({
     description: Yup.string()
       .max(50, 'Must be 50 characters or less')
       .required('Name is required'),
@@ -48,84 +48,91 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
     floor: Yup.string().required('Floor is required'),
   })
 
-  const [inputValues, setInputValues] = useState({
-    description: '',
-    address: '',
-    floor: '',
-  })
-
-  const addRoomFromList = () => {
-    handleAddRoom({ ...inputValues })
+  const addRoomFromList = (values) => {
+    handleAddRoom({ ...values })
     handleClose()
-    setInputValues({
-      description: '',
-      address: '',
-      floor: '',
-    })
-  }
-
-  const setInputValue = (event) => {
-    setInputValues({
-      ...inputValues,
-      [event.target.name]: event.target.value,
-    })
   }
 
   return (
-    <Formik inputValues={inputValues} validationSchema={validate}>
-      <Dialog
-        className={styles.popup}
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-      >
-        <Button
-          className={styles.popup__btnClose}
-          onClick={handleClose}
-          variant="contained"
-          color="secondary"
+    <Formik
+      initialValues={{
+        description: '',
+        address: '',
+        floor: '',
+      }}
+      validationSchema={validate}
+      onSubmit={(values, { resetForm }) => {
+        addRoomFromList(values)
+        resetForm()
+      }}
+    >
+      {({ errors, values, touched, handleChange, handleSubmit }) => (
+        <Dialog
+          className={styles.popup}
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
         >
-          <CloseIcon />
-        </Button>
-        <DialogTitle className={styles.popup__title} id="alert-dialog-title">
-          ADD NEW ROOM
-        </DialogTitle>
-        <DialogContent className={styles.popup__content}>
-          {textFieldSettings.map((input) => (
-            <TextField
-              className={styles.popup__input}
-              type={input.type}
-              key={input.label}
-              label={input.label}
-              name={input.name}
-              variant={input.variant}
-              required={input.required}
-              value={inputValues[input.name]}
-              onChange={setInputValue}
-              inputProps={{ min: 0 }}
-            />
-          ))}
-        </DialogContent>
-        <DialogActions>
           <Button
+            className={styles.popup__btnClose}
             onClick={handleClose}
             variant="contained"
-            className={styles.popup__btn}
             color="secondary"
           >
-            CANCEL
+            <CloseIcon />
           </Button>
-          <Button
-            onClick={addRoomFromList}
-            variant="contained"
-            className={styles.popup__btn}
-            color="primary"
-            autoFocus
-          >
-            ADD ROOM
-          </Button>
-        </DialogActions>
-      </Dialog>
+          <Form onSubmit={handleSubmit}>
+            <DialogTitle
+              className={styles.popup__title}
+              id="alert-dialog-title"
+            >
+              ADD NEW ROOM
+            </DialogTitle>
+            <DialogContent className={styles.popup__content}>
+              {textFieldSettings.map((input) => (
+                <>
+                  <TextField
+                    className={styles.popup__input}
+                    type={input.type}
+                    key={input.label}
+                    label={input.label}
+                    name={input.name}
+                    variant={input.variant}
+                    required={input.required}
+                    value={values[input.name]}
+                    onChange={handleChange}
+                    inputProps={{ min: 0 }}
+                  />
+                  {errors[input.name] && touched[input.name] ? (
+                    <div className={styles.popup__error}>
+                      {errors[input.name]}
+                    </div>
+                  ) : null}
+                </>
+              ))}
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={handleClose}
+                variant="contained"
+                className={styles.popup__btn}
+                color="secondary"
+              >
+                CANCEL
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                className={styles.popup__btn}
+                color="primary"
+                autoFocus
+              >
+                ADD ROOM
+              </Button>
+            </DialogActions>
+          </Form>
+        </Dialog>
+      )}
     </Formik>
   )
 }

@@ -2,42 +2,43 @@
   display: flex;
   justify-content: center;
 
- &__title   {
+  &__error {
+    color: #ff0000;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  &__title {
     h2 {
       font-family: Montserrat;
       font-weight: bold;
       font-size: 48px;
       padding: 20px 55px;
-
     }
+  }
 
- }
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
 
- &__content {
-  display: flex;
-  flex-direction: column;
- }
+  &__input {
+    div {
+      margin-bottom: 10px;
+    }
+  }
 
- &__input {
-   div {
-   margin-bottom: 20px;
-   }
- }
+  &__btnClose {
+    align-self: flex-end;
+    width: 40px;
+    height: 40px;
+  }
 
- &__btnClose {
-  align-self: flex-end;
-  width: 40px;
-  height: 40px;
-  
- }
-
- &__btn {
-   span {
-     font-size: 16px;
-   }
-
- }
-
+  &__btn {
+    span {
+      font-size: 16px;
+    }
+  }
 }
 
 @media screen and (max-width: 1080px) {
@@ -46,7 +47,6 @@
       padding: 0;
     }
   }
-
 }
 
 @media screen and (max-width: 768px) {
@@ -66,19 +66,17 @@
     div {
       margin-bottom: 10px;
       font-size: 0.3rem;
-      }
+    }
 
     label {
       font-size: 0.5rem;
     }
-    }
-
+  }
 
   .popup__btnClose {
     width: 30px;
     height: 30px;
   }
-
 }
 
 @media screen and (max-width: 380px) {
@@ -95,8 +93,8 @@
 
   .popup__input {
     div {
-      margin-bottom: 10px;
+      margin-bottom: 13px;
       font-size: 0.3rem;
-      }
     }
+  }
 }
