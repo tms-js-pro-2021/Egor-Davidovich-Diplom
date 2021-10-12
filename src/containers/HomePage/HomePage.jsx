@@ -34,7 +34,7 @@ const MainContent = (props) => {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Token ${token.token}`,
+          Authorization: `Token ${token}`,
         },
       }).then(() => {
         const clonedRooms = [...rooms]
@@ -57,7 +57,7 @@ const MainContent = (props) => {
         body: JSON.stringify(newRoom),
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Token ${token.token}`,
+          Authorization: `Token ${token}`,
         },
       })
         .then((response) => response.json())
@@ -111,6 +111,7 @@ export default connect(mapStateToProps)(MainContent)
 //     body: body ? JSON.stringify(body) : undefined,
 //     headers: {
 //       'Content-Type': 'application/json',
+// Authorization: `Token ${tokenUser}`,
 //     },
 //   })
 // }
@@ -130,7 +131,7 @@ export default connect(mapStateToProps)(MainContent)
 
 // const handleDeleteRoom = (id) => {
 //   try {
-//     defaultFetch(`${api.rooms}${id}`, 'DELETE', token.token).then(() => {
+//     defaultFetch(`${api.rooms}${id}`, 'DELETE', token).then(() => {
 //       const clonedRooms = [...rooms]
 //       setRooms(clonedRooms.filter((item) => id !== item.id))
 //     })
@@ -146,7 +147,7 @@ export default connect(mapStateToProps)(MainContent)
 //     floor,
 //   }
 //   try {
-//     defaultFetch(api.rooms, 'POST', token.token, newRoom)
+//     defaultFetch(api.rooms, 'POST', token, newRoom)
 //       .then((response) => response.json())
 //       .then((response) => {
 //         setRooms([...rooms, { ...newRoom, ...response }])
