@@ -13,30 +13,33 @@ const MainContent = (props) => {
     token: { token },
   } = props
 
+  const defaultFetch = (url, methodFetch, tokenUser, body) => {
+    return fetch(url, {
+      method: methodFetch,
+      body: body ? JSON.stringify(body) : undefined,
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Token ${tokenUser}`,
+      },
+    })
+  }
+  
   useEffect(() => {
     try {
-      fetch(api.rooms, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      defaultFetch(
+        api.rooms,
+        'GET'
+      )
         .then((data) => data.json())
         .then((data) => setRooms(data))
     } catch (error) {
       console.log('SERVER ERROR')
     }
   }, [])
-
+  
   const handleDeleteRoom = (id) => {
     try {
-      fetch(`${api.rooms}${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${token}`,
-        },
-      }).then(() => {
+      defaultFetch(`${api.rooms}${id}`, 'DELETE', token).then(() => {
         const clonedRooms = [...rooms]
         setRooms(clonedRooms.filter((item) => id !== item.id))
       })
@@ -44,7 +47,7 @@ const MainContent = (props) => {
       console.log('SERVER ERROR')
     }
   }
-
+  
   const handleAddRoom = ({ description, address, floor }) => {
     const newRoom = {
       description,
@@ -52,14 +55,7 @@ const MainContent = (props) => {
       floor,
     }
     try {
-      fetch(api.rooms, {
-        method: 'POST',
-        body: JSON.stringify(newRoom),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${token}`,
-        },
-      })
+      defaultFetch(api.rooms, 'POST', token, newRoom)
         .then((response) => response.json())
         .then((response) => {
           setRooms([...rooms, { ...newRoom, ...response }])
@@ -105,54 +101,4 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps)(MainContent)
 
-// const defaultFetch = (url, methodFetch, tokenUser, body) => {
-//   fetch(url, {
-//     method: methodFetch,
-//     body: body ? JSON.stringify(body) : undefined,
-//     headers: {
-//       'Content-Type': 'application/json',
-// Authorization: `Token ${tokenUser}`,
-//     },
-//   })
-// }
 
-// useEffect(() => {
-//   try {
-//     defaultFetch(
-//       'https://tms-js-pro-back-end.herokuapp.com/api/meet-rooms/',
-//       'GET'
-//     )
-//       .then((data) => data.json())
-//       .then((data) => setRooms(data))
-//   } catch (error) {
-//     console.log('SERVER ERROR')
-//   }
-// }, [])
-
-// const handleDeleteRoom = (id) => {
-//   try {
-//     defaultFetch(`${api.rooms}${id}`, 'DELETE', token).then(() => {
-//       const clonedRooms = [...rooms]
-//       setRooms(clonedRooms.filter((item) => id !== item.id))
-//     })
-//   } catch (error) {
-//     console.log('SERVER ERROR')
-//   }
-// }
-
-// const handleAddRoom = ({ description, address, floor }) => {
-//   const newRoom = {
-//     description,
-//     address,
-//     floor,
-//   }
-//   try {
-//     defaultFetch(api.rooms, 'POST', token, newRoom)
-//       .then((response) => response.json())
-//       .then((response) => {
-//         setRooms([...rooms, { ...newRoom, ...response }])
-//       })
-//   } catch (error) {
-//     console.log('SERVER ERROR')
-//   }
-// }
