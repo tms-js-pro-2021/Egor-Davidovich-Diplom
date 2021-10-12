@@ -17,5 +17,9 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['react', 'react-hooks', 'jsx-a11y'],
-  rules: { 'react/prop-types': 0, 'react/jsx-props-no-spreading': 0 },
+  rules: {
+    'react/prop-types': 0,
+    'react/jsx-props-no-spreading': 0,
+    'prefer-destructuring': ['error', { object: false, array: false }],
+  },
 }

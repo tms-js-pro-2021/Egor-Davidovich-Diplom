@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import FacebookIcon from '@material-ui/icons/Facebook'
 import InstagramIcon from '@material-ui/icons/Instagram'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
@@ -9,33 +10,33 @@ const Footer = () => {
   return (
     <div className={styles.footer}>
       <nav className={styles.nav}>
-        <a className={styles.nav__link} href="#">
+        <Link to="/#" className={styles.nav__link}>
           HOME
-        </a>
-        <a className={styles.nav__link} href="#">
+        </Link>
+        <Link to="/#" className={styles.nav__link}>
           ROOMS
-        </a>
-        <a className={styles.nav__link} href="#">
+        </Link>
+        <Link to="/#" className={styles.nav__link}>
           ABOUT
-        </a>
-        <a className={styles.nav__link} href="#">
+        </Link>
+        <Link to="/#" className={styles.nav__link}>
           CONTACT US
-        </a>
+        </Link>
       </nav>
       <p className={styles.footer__copyright}> © 2021 Copyright TMS</p>
       <div>
-        <a href="#" className={styles.social__links}>
+        <Link to="/#" className={styles.social__links}>
           <FacebookIcon fontSize="large" />
-        </a>
-        <a href="#" className={styles.social__links}>
+        </Link>
+        <Link to="/#" className={styles.social__links}>
           <InstagramIcon fontSize="large" />
-        </a>
-        <a href="#" className={styles.social__links}>
+        </Link>
+        <Link to="/#" className={styles.social__links}>
           <LinkedInIcon fontSize="large" />
-        </a>
-        <a href="#" className={styles.social__links}>
+        </Link>
+        <Link to="/#" className={styles.social__links}>
           <TwitterIcon fontSize="large" />
-        </a>
+        </Link>
       </div>
     </div>
   )

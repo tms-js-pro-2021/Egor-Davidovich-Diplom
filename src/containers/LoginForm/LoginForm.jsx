@@ -1,13 +1,11 @@
-// eslint-disable-next-line no-unused-vars
 import React from 'react'
 import { connect } from 'react-redux'
 import { Formik } from 'formik'
 import { useHistory } from 'react-router-dom'
 import styles from './LoginForm.module.scss'
-import Logo from '../../image/logImage.svg'
-
+import Logo from '../../../public/image/logImage.svg'
 import { setToken } from '../../redux/getToken/actions'
-import { api } from '../../Api'
+import api from '../../api'
 
 const LoginForm = (props) => {
   const history = useHistory()

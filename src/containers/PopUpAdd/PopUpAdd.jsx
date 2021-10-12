@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 import { Formik, Form } from 'formik'
@@ -89,10 +90,10 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
               ADD NEW ROOM
             </DialogTitle>
             <DialogContent className={styles.popup__content}>
-              {textFieldSettings.map((input) => (
-                <>
+              {textFieldSettings.map((input, index) => (
+                <div className={styles.popup__input} key={index}>
                   <TextField
-                    className={styles.popup__input}
+                    fullWidth
                     type={input.type}
                     key={input.label}
                     label={input.label}
@@ -108,7 +109,7 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
                       {errors[input.name]}
                     </div>
                   ) : null}
-                </>
+                </div>
               ))}
             </DialogContent>
             <DialogActions>

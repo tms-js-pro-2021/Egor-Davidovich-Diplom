@@ -68,15 +68,13 @@
   height: 250px;
 }
 
-
-
 @media screen and (max-width: 1080px) {
   .room__title {
     margin-left: 0;
     font-size: 24px;
     margin-bottom: 10px;
   }
- 
+
   .room__image {
     display: none;
   }
@@ -90,11 +88,11 @@
     width: 120px;
     height: 50px;
     font-size: 12px;
- }
+  }
 
   .room__buttons__more {
-     margin-right: 0;
-     margin-bottom: 5px;
+    margin-right: 0;
+    margin-bottom: 5px;
   }
 
   .room__action__buttons {
@@ -107,7 +105,7 @@
   .room__title {
     font-size: 18px;
   }
- 
+
   .room__description {
     font-size: 12px;
     width: 200px;
@@ -115,10 +113,10 @@
 
   .room__btn__bookings {
     span {
-        padding: 0;
-        font-size: 0.5rem;
-      }
+      padding: 0;
+      font-size: 0.5rem;
     }
+  }
 }
 
 @media screen and (max-width: 380px) {
@@ -142,24 +140,17 @@
     width: 70px;
     height: 30px;
     font-size: 8px;
- }
+  }
 
- .info__block {
+  .info__block {
     justify-content: space-between;
     align-items: flex-start;
   }
 
   .room__btn__bookings {
     span {
-        padding: 0;
-        font-size: 0.3rem;
-      }
+      padding: 0;
+      font-size: 0.3rem;
     }
+  }
 }
-
-
-
-
-
-
-

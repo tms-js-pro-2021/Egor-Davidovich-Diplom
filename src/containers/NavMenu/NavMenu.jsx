@@ -1,17 +1,15 @@
-import * as React from 'react';
-import {Button, Menu, MenuItem } from '@material-ui/core';
+import * as React from 'react'
+import { Button, Menu, MenuItem } from '@material-ui/core'
 
-
-
- const NavMenu = ({handleLogIn}) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+const NavMenu = ({ handleLogIn }) => {
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  const open = Boolean(anchorEl)
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+    setAnchorEl(event.currentTarget)
+  }
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   return (
     <div>
@@ -19,14 +17,13 @@ import {Button, Menu, MenuItem } from '@material-ui/core';
         id="demo-positioned-button"
         aria-controls="demo-positioned-menu"
         aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}   
+        aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
         style={{
           fontSize: '1.5rem',
           color: 'white',
-          justifyContent: 'flex-end'
+          justifyContent: 'flex-end',
         }}
-
       >
         &#xFE19;
       </Button>
@@ -52,7 +49,7 @@ import {Button, Menu, MenuItem } from '@material-ui/core';
         <MenuItem onClick={handleClose}>CONTACT US</MenuItem>
       </Menu>
     </div>
-  );
+  )
 }
 
 export default NavMenu

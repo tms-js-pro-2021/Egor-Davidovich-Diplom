@@ -1,14 +1,14 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import React from 'react'
+import Button from '@material-ui/core/Button'
+import Dialog from '@material-ui/core/Dialog'
+import DialogActions from '@material-ui/core/DialogActions'
+import DialogTitle from '@material-ui/core/DialogTitle'
 
 const PopUpDel = ({ open, handleClose, handleDeleteRoom, id }) => {
   const deleteRoomFromList = () => {
-    handleDeleteRoom(id);
-    handleClose();
-  };
+    handleDeleteRoom(id)
+    handleClose()
+  }
   return (
     <Dialog
       open={open}
@@ -16,7 +16,9 @@ const PopUpDel = ({ open, handleClose, handleDeleteRoom, id }) => {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">Are you sure delete this room?</DialogTitle>
+      <DialogTitle id="alert-dialog-title">
+        Are you sure delete this room?
+      </DialogTitle>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
           CANCEL
@@ -26,7 +28,7 @@ const PopUpDel = ({ open, handleClose, handleDeleteRoom, id }) => {
         </Button>
       </DialogActions>
     </Dialog>
-  );
-};
+  )
+}
 
-export default PopUpDel;
+export default PopUpDel

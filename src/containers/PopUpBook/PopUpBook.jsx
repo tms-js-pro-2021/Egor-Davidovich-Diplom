@@ -17,15 +17,15 @@ import {
   TextField,
   Typography,
 } from '@material-ui/core'
-import { api } from '../../Api'
+import api from '../../api'
 import styles from './PopUpBook.module.scss'
-import Projector from '../../image/projector.svg'
-import WebCam from '../../image/webcam.svg'
-import Catering from '../../image/catering.svg'
-import Tea from '../../image/tea.svg'
-import Water from '../../image/water.svg'
-import Coffee from '../../image/coffee.svg'
-import Board from '../../image/board.png'
+import Projector from '../../../public/image/projector.svg'
+import WebCam from '../../../public/image/webcam.svg'
+import Catering from '../../../public/image/catering.svg'
+import Tea from '../../../public/image/tea.svg'
+import Water from '../../../public/image/water.svg'
+import Coffee from '../../../public/image/coffee.svg'
+import Board from '../../../public/image/board.png'
 
 const inputSettings = [
   {
@@ -201,8 +201,7 @@ const PopUpBook = ({
       })
         .then((response) => response.json())
         .then((response) => {
-          setDates((prev) => [...prev, response]),
-            handleClose()
+          setDates((prev) => [...prev, response], handleClose())
         })
     } catch (error) {
       console.log('SERVER ERROR')

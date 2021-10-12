@@ -1,3 +1,1 @@
-import RoomList from './RoomList';
-
-export default RoomList;
+export { default } from './RoomList'

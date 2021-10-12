@@ -2,12 +2,10 @@ import React, { useState } from 'react'
 import classnames from 'classnames'
 import { Button } from '@material-ui/core'
 import styles from './RoomItem.module.scss'
-import roomImage from '../../image/room.svg'
-import PopUpDel from '../PopUpDel'
-import PopUpBook from '../PopUpBook'
-import PopUpBookList from '../PopUpBookList'
-
-
+import roomImage from '../../../public/image/room.svg'
+import PopUpDel from '../../containers/PopUpDel'
+import PopUpBook from '../../containers/PopUpBook'
+import PopUpBookList from '../../containers/PopUpBookList'
 
 const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
   const [isShowPopupDel, setIsShowPopupDel] = useState(false)
@@ -16,7 +14,6 @@ const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
   const [dates, setDates] = useState([])
 
   return (
-
     <div className={styles.room}>
       <span className={styles.room__title}>{item.description}</span>
       <div className={styles.info__block}>
@@ -39,6 +36,7 @@ const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
         </div>
         <div className={styles.room__action__buttons}>
           <button
+            type="button"
             onClick={() => setIsShowPopupBook(true)}
             className={classnames(
               styles.room__buttons__more,
@@ -49,6 +47,7 @@ const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
           </button>
           {token && (
             <button
+              type="button"
               onClick={() => setIsShowPopupDel(true)}
               className={classnames(
                 styles.room__buttons__delete,

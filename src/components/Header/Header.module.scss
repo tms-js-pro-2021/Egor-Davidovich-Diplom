@@ -1,88 +1,82 @@
 .header {
-    display: flex;
-    justify-content: space-around;
-    padding: 0 20px;
-    align-items: center;
-    background: rgba(106, 128, 240, 0.93) 0%;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 20px;
+  align-items: center;
+  background: rgba(106, 128, 240, 0.93) 0%;
 }
 
 .nav {
-    display: flex;
+  display: flex;
 }
 
 .header__logo {
-    width: 100%;
-    max-width: 490px;
-    height: 70px;
-    padding: 30px 0;
-  }
-
-.nav__link {
-    font-size: 24px;
-    display: flex;
-    align-items: center;
-    color: #ffffff;
-    text-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
-    text-decoration: none;
-    cursor: pointer;
-
-    &:hover {
-        text-decoration: underline; 
-        color: #ffffff; 
-    }
-
-    &:not(:last-child){
-        margin-right: 25px; 
-    }
+  width: 100%;
+  max-width: 490px;
+  height: 70px;
+  padding: 30px 0;
 }
 
+.nav__link {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  text-shadow: 0px 4px 15px rgb(0 0 0 / 25%);
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    color: #ffffff;
+  }
+
+  &:not(:last-child) {
+    margin-right: 25px;
+  }
+}
 
 .button__login {
-    display: flex;
-    align-items: center;
-    background: transparent;
-    color: #ffffff;
-    cursor: pointer;
-    border: 0;
+  display: flex;
+  align-items: center;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  border: 0;
 
-    &:hover {
-        transition: 1s ease-in-out;
-        background: #013569;
-      }
-  
+  &:hover {
+    transition: 1s ease-in-out;
+    background: #013569;
+  }
 }
 
 .button__login__text {
-    font-family: Montserrat;
-    font-size: 24px;
+  font-family: Montserrat;
+  font-size: 24px;
 }
 
 @media screen and (max-width: 1080px) {
+  .header {
+    justify-content: space-between;
+  }
 
-    .header {
-        justify-content: space-between;
+  .header__logo {
+    padding: 15px 0 0 0;
+  }
 
-    }
-
-    .header__logo {
-        padding: 15px 0 0 0;
-      }
-
-      .nav__link {
-        font-size: 18px
-      }
-      .button__login__text {
-        display: none;
-    }
-
+  .nav__link {
+    font-size: 18px;
+  }
+  .button__login__text {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 768px) {
-    .nav {
-        display: none;
-    }
-    .button__login {
-        display: none;
-    }
-
+  .nav {
+    display: none;
+  }
+  .button__login {
+    display: none;
+  }
 }

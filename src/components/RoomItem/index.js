@@ -1,3 +1,1 @@
-import RoomItem from './RoomItem';
-
-export default RoomItem;
+export { default } from './RoomItem'

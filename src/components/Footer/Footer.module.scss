@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   background: rgba(106, 128, 240, 0.93) 0%;
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 .nav {
@@ -21,23 +21,22 @@
     margin-bottom: 10px;
 
     &:hover {
-        text-decoration: underline; 
-        color: #ffffff; 
+      text-decoration: underline;
+      color: #ffffff;
     }
   }
 }
 
 .social__links {
   margin-right: 30px;
-  color: #ffffff; 
+  color: #ffffff;
 }
 
 @media screen and (max-width: 320px) {
   .nav__link {
     font-size: 8px;
   }
-  .footer__copyright{
+  .footer__copyright {
     font-size: 8px;
   }
-
 }
