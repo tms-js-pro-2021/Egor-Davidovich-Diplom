@@ -49,7 +49,10 @@ const PopUpBookList = ({ open, handleClose, dates, setDates, ...item }) => {
               <ul>
                 <li>START - {convertDateTime(event.startDateTime)}</li>
                 <li>END - {convertDateTime(event.endDateTime)}</li>
-                <li>Guests - {event.guestsCount}</li>
+                <li>
+                  Guests -{' '}
+                  {event.guestsCount === null ? 'No guests' : event.guestsCount}
+                </li>
                 <li>Features - {getCheckedFeatures(event.stuff)}</li>
               </ul>
             </div>

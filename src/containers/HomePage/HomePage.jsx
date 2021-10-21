@@ -23,20 +23,17 @@ const MainContent = (props) => {
       },
     })
   }
-  
+
   useEffect(() => {
     try {
-      defaultFetch(
-        api.rooms,
-        'GET'
-      )
+      defaultFetch(api.rooms, 'GET')
         .then((data) => data.json())
         .then((data) => setRooms(data))
     } catch (error) {
       console.log('SERVER ERROR')
     }
   }, [])
-  
+
   const handleDeleteRoom = (id) => {
     try {
       defaultFetch(`${api.rooms}${id}`, 'DELETE', token).then(() => {
@@ -47,7 +44,7 @@ const MainContent = (props) => {
       console.log('SERVER ERROR')
     }
   }
-  
+
   const handleAddRoom = ({ description, address, floor }) => {
     const newRoom = {
       description,
@@ -100,5 +97,3 @@ const mapStateToProps = (state) => ({
 })
 
 export default connect(mapStateToProps)(MainContent)
-
-
