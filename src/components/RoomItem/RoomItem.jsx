@@ -7,7 +7,7 @@ import PopUpDel from '../../containers/PopUpDel'
 import PopUpBook from '../../containers/PopUpBook'
 import PopUpBookList from '../../containers/PopUpBookList'
 
-const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
+const RoomItem = ({ handleDeleteRoom, token, defaultFetch, ...item }) => {
   const [isShowPopupDel, setIsShowPopupDel] = useState(false)
   const [isShowPopupBook, setIsShowPopupBook] = useState(false)
   const [isShowPopupBookList, setIsShowPopupBookList] = useState(false)
@@ -71,6 +71,8 @@ const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
         handleClose={() => setIsShowPopupBook(false)}
         setDates={setDates}
         dates={dates}
+        defaultFetch={defaultFetch}
+        token={token}
         {...item}
       />
       <PopUpBookList
@@ -80,6 +82,7 @@ const RoomItem = ({ handleDeleteRoom, token, ...item }) => {
         dates={dates}
         handleClose={() => setIsShowPopupBookList(false)}
         {...item}
+        defaultFetch={defaultFetch}
       />
     </div>
   )

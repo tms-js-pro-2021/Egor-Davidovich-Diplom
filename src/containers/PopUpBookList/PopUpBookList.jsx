@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import moment from 'moment'
 import {
   Button,
   Dialog,
@@ -9,15 +10,17 @@ import {
 import api from '../../api'
 import styles from './PopUpBookList.module.scss'
 
-const PopUpBookList = ({ open, handleClose, dates, setDates, ...item }) => {
+const PopUpBookList = ({
+  open,
+  handleClose,
+  dates,
+  setDates,
+  defaultFetch,
+  ...item
+}) => {
   useEffect(() => {
     try {
-      fetch(`${api.bookRoom}?meetRoom=${item.id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
+      defaultFetch(`${api.bookRoom}?meetRoom=${item.id}`, 'GET')
         .then((data) => data.json())
         .then((data) => setDates(data))
     } catch (error) {
@@ -25,7 +28,7 @@ const PopUpBookList = ({ open, handleClose, dates, setDates, ...item }) => {
     }
   }, [])
 
-  const convertDateTime = (date) => date.substr(0, 16).replace('T', ' ')
+  const convertDateTime = (date) => moment(date).format('LLL')
 
   const sortedEvents = dates.sort((a, b) =>
     a.startDateTime > b.startDateTime ? 1 : -1

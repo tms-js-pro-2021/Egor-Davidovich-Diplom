@@ -82,6 +82,7 @@ const MainContent = (props) => {
         rooms={rooms}
         token={token}
         handleDeleteRoom={handleDeleteRoom}
+        defaultFetch={defaultFetch}
       />
       <PopUpAdd
         open={isShowPopupAdd}
