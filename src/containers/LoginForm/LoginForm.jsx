@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Formik } from 'formik'
+import { Formik, Form } from 'formik'
+import * as Yup from 'yup'
 import { useHistory } from 'react-router-dom'
 import styles from './LoginForm.module.scss'
 import Logo from '../../../public/image/logImage.svg'
@@ -9,6 +10,16 @@ import api from '../../api'
 
 const LoginForm = (props) => {
   const history = useHistory()
+
+  const validate = Yup.object().shape({
+    email: Yup.string()
+      .email('Email is incorrect')
+      .required('Email is required')
+      .matches('kemalkalandarov@gmail.com', 'Email is incorrect'),
+    password: Yup.string()
+      .required('Password is required')
+      .matches('test123', 'Password is incorrect'),
+  })
 
   const handleLoginClick = (values) => {
     try {
@@ -38,25 +49,18 @@ const LoginForm = (props) => {
       <h1 className={styles.title}>MyConference</h1>
       <img className={styles.logo} src={Logo} alt="logo" />
       <Formik
-        initialValues={{ email: '', password: '' }}
-        validate={(values) => {
-          const errors = {}
-          if (!values.email) {
-            errors.email = 'Please enter email'
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = 'Invalid email address'
-          }
-          return errors
+        initialValues={{
+          email: '',
+          password: '',
         }}
+        validationSchema={validate}
         onSubmit={(values, { resetForm }) => {
           handleLoginClick(values)
           resetForm()
         }}
       >
-        {({ values, handleChange, errors, handleSubmit }) => (
-          <form className={styles.form} onSubmit={handleSubmit}>
+        {({ errors, values, touched, handleChange, handleSubmit }) => (
+          <Form className={styles.form} onSubmit={handleSubmit}>
             <input
               onChange={handleChange}
               className={styles.input}
@@ -65,9 +69,9 @@ const LoginForm = (props) => {
               name="email"
               value={values.email}
             />
-            <div className={styles.error__message}>
-              {errors.email && errors.email}
-            </div>
+            {errors.email && touched.email && (
+              <div className={styles.error__message}>{errors.email}</div>
+            )}
             <input
               onChange={handleChange}
               className={styles.input}
@@ -76,10 +80,13 @@ const LoginForm = (props) => {
               value={values.password}
               name="password"
             />
+            {errors.password && touched.password && (
+              <div className={styles.error__message}>{errors.password}</div>
+            )}
             <button type="submit" className={styles.button__login}>
               LOG IN
             </button>
-          </form>
+          </Form>
         )}
       </Formik>
     </div>
