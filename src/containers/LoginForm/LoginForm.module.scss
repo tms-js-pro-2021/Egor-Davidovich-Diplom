@@ -57,9 +57,19 @@
 }
 
 .error__message {
-  color: #ff0000;
-  font-size: 16px;
+  position: absolute;
+  left: 15px;
+  bottom: 55px;
+  
+  &__pass {
+    position: absolute;
+    left: 15px;
+    bottom: 0;
+  }
+
 }
+
+
 
 @media screen and (max-width: 768px) {
   .title {

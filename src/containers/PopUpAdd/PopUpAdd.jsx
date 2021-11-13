@@ -12,7 +12,9 @@ import {
   DialogTitle,
   TextField,
 } from '@material-ui/core'
+import { Alert } from '@material-ui/lab'
 import styles from './PopUpAdd.module.scss'
+
 
 const textFieldSettings = [
   {
@@ -106,7 +108,7 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
                   />
                   {errors[input.name] && touched[input.name] ? (
                     <div className={styles.popup__error}>
-                      {errors[input.name]}
+                      <Alert severity="error">{errors[input.name]}</Alert>
                     </div>
                   ) : null}
                 </div>

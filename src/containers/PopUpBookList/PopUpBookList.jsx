@@ -7,7 +7,7 @@ import {
   DialogActions,
   DialogTitle,
 } from '@material-ui/core'
-import api from '../../api'
+import api from '../../Api'
 import styles from './PopUpBookList.module.scss'
 
 const PopUpBookList = ({

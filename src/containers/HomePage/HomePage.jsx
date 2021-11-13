@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import AddToPhotosOutlinedIcon from '@material-ui/icons/AddToPhotosOutlined'
+import { Alert } from '@material-ui/lab'
 import RoomList from '../../components/RoomList'
 import styles from './HomePage.module.scss'
 import PopUpAdd from '../PopUpAdd/PopUpAdd'
-import api from '../../api'
+import api from '../../Api'
+
 
 const MainContent = (props) => {
   const [isShowPopupAdd, setIsShowPopupAdd] = useState(false)
+  const [isMessageError, setMessageError] = useState(false)
   const [rooms, setRooms] = useState([])
   const {
     token: { token },
@@ -30,7 +33,7 @@ const MainContent = (props) => {
         .then((data) => data.json())
         .then((data) => setRooms(data))
     } catch (error) {
-      console.log('SERVER ERROR')
+      setMessageError(true)
     }
   }, [])
 
@@ -41,7 +44,7 @@ const MainContent = (props) => {
         setRooms(clonedRooms.filter((item) => id !== item.id))
       })
     } catch (error) {
-      console.log('SERVER ERROR')
+      setMessageError(true)
     }
   }
 
@@ -58,7 +61,7 @@ const MainContent = (props) => {
           setRooms([...rooms, { ...newRoom, ...response }])
         })
     } catch (error) {
-      console.log('SERVER ERROR')
+      setMessageError(true)
     }
   }
 
@@ -77,6 +80,13 @@ const MainContent = (props) => {
           />
           <span className={styles.button__add__text}>ADD NEW ROOM</span>
         </button>
+      )}
+      {isMessageError && (
+        <div className={styles.error__message__pass}>
+          <Alert variant="filled" severity="error">
+            SERVER ERROR
+          </Alert>
+        </div>
       )}
       <RoomList
         rooms={rooms}

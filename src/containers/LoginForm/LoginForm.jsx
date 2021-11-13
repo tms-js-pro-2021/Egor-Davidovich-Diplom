@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import { useHistory } from 'react-router-dom'
+import { Alert } from '@material-ui/lab'
 import styles from './LoginForm.module.scss'
 import Logo from '../../../public/image/logImage.svg'
 import { setToken } from '../../redux/getToken/actions'
-import api from '../../api'
+import api from '../../Api'
 
 const LoginForm = (props) => {
   const history = useHistory()
@@ -70,7 +71,11 @@ const LoginForm = (props) => {
               value={values.email}
             />
             {errors.email && touched.email && (
-              <div className={styles.error__message}>{errors.email}</div>
+              <div className={styles.error__message}>
+                <Alert variant="filled" severity="error">
+                  {errors.email}
+                </Alert>
+              </div>
             )}
             <input
               onChange={handleChange}
@@ -81,7 +86,11 @@ const LoginForm = (props) => {
               name="password"
             />
             {errors.password && touched.password && (
-              <div className={styles.error__message}>{errors.password}</div>
+              <div className={styles.error__message__pass}>
+                <Alert variant="filled" severity="error">
+                  {errors.password}
+                </Alert>
+              </div>
             )}
             <button type="submit" className={styles.button__login}>
               LOG IN

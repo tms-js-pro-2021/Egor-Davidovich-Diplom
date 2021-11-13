@@ -1,3 +1,4 @@
+import { Box, CircularProgress } from '@material-ui/core'
 import React from 'react'
 import RoomItem from '../RoomItem'
 
@@ -13,7 +14,7 @@ const RoomList = ({
 
   return (
     <>
-      {rooms.length !== 0 &&
+      {rooms.length !== 0 ? (
         sortedRooms.map((item) => (
           <RoomItem
             events={events}
@@ -24,7 +25,12 @@ const RoomList = ({
             {...item}
             defaultFetch={defaultFetch}
           />
-        ))}
+        ))
+      ) : (
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <CircularProgress />
+        </Box>
+      )}
     </>
   )
 }
