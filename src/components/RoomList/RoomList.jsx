@@ -1,4 +1,5 @@
-import { Box, CircularProgress } from '@material-ui/core'
+import { Box } from '@material-ui/core'
+import { Skeleton } from '@material-ui/lab'
 import React from 'react'
 import RoomItem from '../RoomItem'
 
@@ -27,8 +28,13 @@ const RoomList = ({
           />
         ))
       ) : (
-        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <CircularProgress />
+        <Box>
+          <Skeleton height={100} />
+          <Skeleton height={100} />
+          <Skeleton height={100} />
+          <Skeleton height={100} />
+          <Skeleton height={100} />
+          <Skeleton height={100} />
         </Box>
       )}
     </>

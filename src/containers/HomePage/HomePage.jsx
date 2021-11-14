@@ -45,6 +45,7 @@ const MainContent = (props) => {
       })
     } catch (error) {
       setMessageError(true)
+      console.log("server error");
     }
   }
 
