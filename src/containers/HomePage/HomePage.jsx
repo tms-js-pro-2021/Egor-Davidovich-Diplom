@@ -7,7 +7,6 @@ import styles from './HomePage.module.scss'
 import PopUpAdd from '../PopUpAdd/PopUpAdd'
 import api from '../../Api'
 
-
 const MainContent = (props) => {
   const [isShowPopupAdd, setIsShowPopupAdd] = useState(false)
   const [isMessageError, setMessageError] = useState(false)
@@ -45,7 +44,7 @@ const MainContent = (props) => {
       })
     } catch (error) {
       setMessageError(true)
-      console.log("server error");
+      console.log('server error')
     }
   }
 

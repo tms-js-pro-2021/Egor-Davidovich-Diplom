@@ -34,6 +34,12 @@ const PopUpBookList = ({
     a.startDateTime > b.startDateTime ? 1 : -1
   )
 
+  const currentDate = new Date()
+
+  const actEvents = sortedEvents.filter(
+    (event) => new Date(event.endDateTime) >= currentDate
+  )
+
   const getCheckedFeatures = (obj) =>
     Object.keys(obj)
       .filter((key) => obj[key])
@@ -43,24 +49,30 @@ const PopUpBookList = ({
     <Dialog open={open} onClose={handleClose} className={styles.popup}>
       <DialogTitle className={styles.popup__title}>BOOKINGS</DialogTitle>
       <DialogContent>
-        {sortedEvents.map((event) => {
-          return (
-            <div className={styles.popup__info} key={event.id}>
-              <span className={styles.popup__info__type}>
-                {event.customFields?.eventType}
-              </span>
-              <ul>
-                <li>START - {convertDateTime(event.startDateTime)}</li>
-                <li>END - {convertDateTime(event.endDateTime)}</li>
-                <li>
-                  Guests -{' '}
-                  {event.guestsCount === null ? 'No guests' : event.guestsCount}
-                </li>
-                <li>Features - {getCheckedFeatures(event.stuff)}</li>
-              </ul>
-            </div>
-          )
-        })}
+        {actEvents.length === 0 ? (
+          <span className={styles.popup__info__type}>NO BOOKINGS</span>
+        ) : (
+          actEvents.map((event) => {
+            return (
+              <div className={styles.popup__info} key={event.id}>
+                <span className={styles.popup__info__type}>
+                  {event.customFields?.eventType}
+                </span>
+                <ul>
+                  <li>START - {convertDateTime(event.startDateTime)}</li>
+                  <li>END - {convertDateTime(event.endDateTime)}</li>
+                  <li>
+                    Guests -{' '}
+                    {event.guestsCount === null
+                      ? 'No guests'
+                      : event.guestsCount}
+                  </li>
+                  <li>Features - {getCheckedFeatures(event.stuff)}</li>
+                </ul>
+              </div>
+            )
+          })
+        )}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary" variant="contained">
