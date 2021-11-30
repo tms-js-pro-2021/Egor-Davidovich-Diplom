@@ -1,11 +1,14 @@
 /* eslint-disable react/no-array-index-key */
-import React from 'react'
+import React, { useState } from 'react'
 import CloseIcon from '@material-ui/icons/Close'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 
 import {
   Button,
+  Card,
+  CardActions,
+  CardMedia,
   Dialog,
   DialogActions,
   DialogContent,
@@ -14,7 +17,6 @@ import {
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab'
 import styles from './PopUpAdd.module.scss'
-
 
 const textFieldSettings = [
   {
@@ -41,6 +43,8 @@ const textFieldSettings = [
 ]
 
 const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
+  const [file, setFile] = useState('')
+
   const validate = Yup.object().shape({
     description: Yup.string()
       .max(50, 'Must be 50 characters or less')
@@ -55,6 +59,30 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
     handleAddRoom({ ...values })
     handleClose()
   }
+
+  const sendImage = () => {
+    const form = new FormData()
+    form.append('image', file)
+
+    fetch(
+      'https://server.kemalkalandarov.lol/api/images?resource=ed-rooms&id=123',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type':
+            'multipart/form-data; boundary=---011000010111000001101001',
+        },
+      }
+    )
+      .then((response) => {
+        console.log(response)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+  }
+
+  console.log(file);
 
   return (
     <Formik
@@ -115,6 +143,32 @@ const PopUpAdd = ({ open, handleClose, handleAddRoom }) => {
               ))}
             </DialogContent>
             <DialogActions>
+              <Card sx={{ width: 345 }}>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={file ? URL.createObjectURL(file) : ''}
+                />
+                <CardActions>
+                  <Button variant="contained" component="label">
+                    Upload image
+                    <input
+                      type="file"
+                      hidden
+                      onChange={(e) => {
+                        setFile(e.target.files[0])
+                      }}
+                    />
+                  </Button>
+                  <Button
+                    variant="contained"
+                    component="label"
+                    onClick={sendImage}
+                  >
+                    Save Image
+                  </Button>
+                </CardActions>
+              </Card>
               <Button
                 onClick={handleClose}
                 variant="contained"
