@@ -26,11 +26,11 @@ const MainContent = (props) => {
     })
   }
 
-  useEffect(() => {
+  useEffect(async () => {
     try {
-      defaultFetch(api.rooms, 'GET')
-        .then((data) => data.json())
-        .then((data) => setRooms(data))
+      const getRooms = await defaultFetch(api.rooms, 'GET')
+      const result = await getRooms.json()
+      setRooms(result)
     } catch (error) {
       setMessageError(true)
     }
@@ -48,18 +48,16 @@ const MainContent = (props) => {
     }
   }
 
-  const handleAddRoom = ({ description, address, floor }) => {
+  const handleAddRoom = async ({ description, address, floor }) => {
     const newRoom = {
       description,
       address,
       floor,
     }
     try {
-      defaultFetch(api.rooms, 'POST', token, newRoom)
-        .then((response) => response.json())
-        .then((response) => {
-          setRooms([...rooms, { ...newRoom, ...response }])
-        })
+      const addRooms = await defaultFetch(api.rooms, 'POST', token, newRoom)
+      const result = await addRooms.json()
+      setRooms([...rooms, { ...newRoom, ...result }])
     } catch (error) {
       setMessageError(true)
     }
