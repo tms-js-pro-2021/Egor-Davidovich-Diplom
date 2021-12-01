@@ -36,12 +36,12 @@ const MainContent = (props) => {
     }
   }, [])
 
-  const handleDeleteRoom = (id) => {
+  const handleDeleteRoom = async (id) => {
     try {
-      defaultFetch(`${api.rooms}${id}`, 'DELETE', token).then(() => {
-        const clonedRooms = [...rooms]
-        setRooms(clonedRooms.filter((item) => id !== item.id))
-      })
+      const delRooms = await defaultFetch(`${api.rooms}${id}`, 'DELETE', token)
+      await delRooms.json()
+      const clonedRooms = [...rooms]
+      setRooms(clonedRooms.filter((item) => id !== item.id))
     } catch (error) {
       setMessageError(true)
       console.log('server error')
