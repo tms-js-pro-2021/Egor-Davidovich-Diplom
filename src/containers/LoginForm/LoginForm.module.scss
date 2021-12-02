@@ -57,19 +57,16 @@
 }
 
 .error__message {
-  position: absolute;
+  position: fixed;
   left: 15px;
-  bottom: 55px;
-  
+  bottom: 65px;
+
   &__pass {
-    position: absolute;
+    position: fixed;
     left: 15px;
-    bottom: 0;
+    bottom: 10px;
   }
-
 }
-
-
 
 @media screen and (max-width: 768px) {
   .title {
